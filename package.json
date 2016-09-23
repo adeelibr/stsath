@@ -1,0 +1,25 @@
+{
+  "name": "stsath",
+  "version": "1.0.0",
+  "description": "Twitter Sentiment Analysis On Tweets & Hashtags",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adeelibr/stsath.git"
+  },
+  "keywords": [
+    "twitter",
+    "sentiment",
+    "tweets",
+    "hashtags"
+  ],
+  "author": "Adeel Imran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adeelibr/stsath/issues"
+  },
+  "homepage": "https://github.com/adeelibr/stsath#readme"
+}
