@@ -4,7 +4,8 @@
   "private": true,
   "description": "Twitter Sentiment Analysis On Tweets & Hashtags",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -20,10 +21,7 @@
     "url": "git+https://github.com/adeelibr/stsath.git"
   },
   "keywords": [
-    "twitter",
-    "sentiment",
-    "tweets",
-    "hashtags"
+    "twitter", "sentiment", "tweets", "hashtags"
   ],
   "author": "Adeel Imran",
   "license": "MIT",
