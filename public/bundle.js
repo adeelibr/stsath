@@ -95,8 +95,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// import TodoApp from 'TodoApp';
-	
-	// $(document).foundation();
 	// require('style!css!sass!./styles/app.scss');
 	
 	var App = _react2.default.createClass({
@@ -108,7 +106,7 @@
 	      null,
 	      _react2.default.createElement(
 	        'p',
-	        null,
+	        { className: 'container' },
 	        'Hello'
 	      )
 	    );
