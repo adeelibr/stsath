@@ -4,6 +4,8 @@ var path = require('path');
 config = {
   entry: [
     'script!jquery/dist/jquery.min.js',
+    // 'script!bootstrap/dist/js/bootstrap.min.js',
+    'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
     './client/app.jsx',
   ],
   externals: {
@@ -37,14 +39,27 @@ config = {
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
-      }
+      },
+      {
+        test: /\.css|scss$/, loader: 'style!css!sass'
+      },
+      {
+          test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/font-woff'
+      },
+      {
+          test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/octet-stream'
+      },
+      {
+          test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'file'
+      },
+      {
+        test: /\.jpg|png$/, loader: 'file'
+      },
     ]
   },
-  // sassLoader: {
-  //   includePaths: [
-  //     path.resolve(__dirname, 'node_modules/foundation-sites/scss')
-  //   ]
-  // },
   devtool: 'source-map'
 };
 
