@@ -4,7 +4,6 @@ var path = require('path');
 config = {
   entry: [
     'script!jquery/dist/jquery.min.js',
-    // 'script!bootstrap/dist/js/bootstrap.min.js',
     'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
     './client/app.jsx',
   ],
@@ -44,16 +43,16 @@ config = {
         test: /\.css|scss$/, loader: 'style!css!sass'
       },
       {
-          test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'url?limit=10000&mimetype=application/font-woff'
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff'
       },
       {
-          test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'url?limit=10000&mimetype=application/octet-stream'
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream'
       },
       {
-          test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'file'
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file'
       },
       {
         test: /\.jpg|png$/, loader: 'file'
