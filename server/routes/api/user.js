@@ -1,8 +1,7 @@
 var express  = require('express');
 var router = express.Router();
 
-var userFunc = require('../controllers/user');
-
+var userFunc = require('../../controllers/user');
 
 // @endpoint api/user/:id
 // Get a user by id
