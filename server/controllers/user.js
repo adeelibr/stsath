@@ -2,11 +2,12 @@ module.exports = {
 
 	getUser: function (req, res) {
 		id = req.params.id;
+		user = req.user;
 		if (!id) {
 			return res.status(400).send({ "error": "Parameter is missing" }).end();
 		}
 
-    return res.status(200).send({ "user": id }).end();
+    return res.status(200).send({ "user": id, "asd": user }).end();
 		// User.findOne({
 		// 	where: { id : id }
 		// })
