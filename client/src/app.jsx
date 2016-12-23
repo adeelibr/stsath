@@ -8,7 +8,7 @@ require('style!css!sass!./styles/app.sass');
 let App = React.createClass({
   render: function () {
     return (
-      <div className="fluid-container">
+      <div className="container">
         <p>Hello</p>
       </div>
     );

@@ -1,8 +1,9 @@
 module.exports = {
 
 	getUser: function (req, res) {
-		id = req.params.id;
-		user = req.user;
+		var id = req.params.id;
+		var user = req.user;
+		
 		if (!id) {
 			return res.status(400).send({ "error": "Parameter is missing" }).end();
 		}

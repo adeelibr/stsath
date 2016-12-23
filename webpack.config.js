@@ -2,11 +2,20 @@ var webpack = require('webpack');
 var path = require('path');
 
 config = {
+
+  // the entry file for the bundle
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    './client/app.jsx',
+    './client/src/app.jsx',
   ],
+
+  // the bundle file we will get in the result
+  output: {
+    path: path.join(__dirname, '/client/dist/js'),
+    filename: 'app.js',
+  },
+
   externals: {
     jquery: 'jQuery',
   },
@@ -16,10 +25,6 @@ config = {
       'jQuery': 'jquery'
     })
   ],
-  output: {
-    path: __dirname + '/public',
-    filename: 'bundle.js'
-  },
   resolve: {
     root: __dirname,
     modulesDirectories: [
@@ -29,18 +34,22 @@ config = {
     ],
     extensions: ['', '.js', '.jsx']
   },
+
   module: {
+    // apply loaders to files that meet given conditions
     loaders: [
       {
+        test: /\.jsx?$/,
+        include: path.join(__dirname, '/client/src'),
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0']
-        },
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/
+        }
       },
       {
-        test: /\.css|scss$/, loader: 'style!css!sass'
+        test: /\.css|scss$/,
+        loader: 'style!css!sass'
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -55,11 +64,16 @@ config = {
         loader: 'file'
       },
       {
-        test: /\.jpg|png$/, loader: 'file'
+        test: /\.jpg|png$/,
+        loader: 'file'
       },
     ]
   },
-  devtool: 'source-map'
+
+  devtool: 'source-map',
+
+  // start Webpack in a watch mode, so Webpack will rebuild the bundle on changes
+  watch: true
 };
 
 module.exports = config;
