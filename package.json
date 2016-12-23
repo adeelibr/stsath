@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "devstart": "nodemon --use_strict app.js",
-    "build": "webpack --colors",
+    "bundle": "webpack --colors",
     "buildw": "webpack -w --colors"
   },
   "dependencies": {
