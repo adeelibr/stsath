@@ -5,7 +5,7 @@ var router = express.Router();
 var isAuth = require('../../middlewares/isAuth');
 
 // api's
-var common = require('../../controllers/common');
+var common = require('../../controllers/common'); // public routes without authentication
 var user = require('./user');
 
 router.get('/', function(req, res) {
@@ -13,8 +13,8 @@ router.get('/', function(req, res) {
 })
 
 
-router
-  .post('/login', common.login) // public routes without authentication
-  .use('/user', isAuth, user);
+router.post('/login', common.login);
+router.post('/signup', common.signup);
+router.use('/user', isAuth, user);
 
 module.exports = router;

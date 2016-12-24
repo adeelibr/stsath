@@ -9,9 +9,6 @@ router.get('/', userFunc.getAllUser);
 // @endpoint api/user/:id Get a user by id
 router.get('/:id', userFunc.getUser);
 
-// @endpoint api/user/create
-router.post('/create', userFunc.create);
-
 // @endpoint api/user/:id Delete a user by id
 router.delete('/:id', userFunc.delete);
 

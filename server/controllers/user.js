@@ -36,29 +36,6 @@ module.exports = {
 		})
 	}, // end of getUser
 
-	create: function (req, res, next) {
-
-		var user = {
-			username: req.body.username,
-			first_name: req.body.first_name,
-			last_name: req.body.last_name,
-			email: req.body.email,
-			password: req.body.password,
-		};
-
-		users.create({
-			username: user.username,
-			first_name: user.first_name,
-			last_name: user.last_name,
-			email: user.email,
-			hashed_password: user.password,
-		})
-		.then(function(u) {
-			return res.status(200).json({ success: true, user: u }).end();
-		})
-
-	},
-
 	delete: function (req, res, next) {
 			return res.status(200).send({ "user": "u" }).end();
 	}
