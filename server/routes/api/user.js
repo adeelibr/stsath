@@ -1,13 +1,13 @@
 var express  = require('express');
 var router = express.Router();
 
-// middlewares
-var isAuth = require('../../middlewares/isAuth');
-
 var userFunc = require('../../controllers/user');
 
+// @endpoint api/user/ Get all user
+router.get('/', userFunc.getAllUser);
+
 // @endpoint api/user/:id Get a user by id
-router.get('/:id', isAuth, userFunc.getUser);
+router.get('/:id', userFunc.getUser);
 
 // @endpoint api/user/create
 router.post('/create', userFunc.create);

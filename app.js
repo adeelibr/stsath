@@ -1,10 +1,12 @@
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
+var morgan = require('morgan'); // logger
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var app = express();
+
+var config = require('./config');
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'server/views'));
@@ -14,12 +16,13 @@ var app = express();
 app.use(express.static('./server/static'));
 app.use(express.static('./client/dist'));
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('superSecret', config.secret);
 
 var routes = require('./server/routes/index');
 app.use('/', routes);
