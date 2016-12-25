@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-// var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 var models = require('../models');
 var users = models.users;
@@ -18,7 +18,11 @@ module.exports = {
 				res.status(400).send({ success: false, message: 'Authentication failed. User not found.' });
 			} else if (user) {
 
-				if (user.hashed_password != password) {
+        console.log(password);
+        console.log(user.hashed_password);
+        console.log(bcrypt.compareSync(req.body.password, user.hashed_password));
+
+        if (!bcrypt.compareSync(req.body.password, user.hashed_password)) {
 					res.status(400).json({ success: false, message: 'Authentication failed. Wrong Password.' });
 				} else {
 					var payload = { username: username, password: password };

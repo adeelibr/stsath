@@ -5,11 +5,11 @@
   "description": "Twitter Sentiment Analysis On Tweets & Hashtags",
   "scripts": {
     "start": "node app.js",
-    "devstart": "nodemon --use_strict app.js",
-    "bundle": "webpack --colors",
-    "buildw": "webpack -w --colors"
+    "devstart": "nodemon app.js",
+    "bundle": "./node_modules/.bin/webpack --colors"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -43,7 +43,6 @@
     "karma-webpack": "^1.8.0",
     "mocha": "^3.1.2",
     "node-sass": "^3.10.1",
-    "node-uuid": "^1.4.7",
     "react-addons-test-utils": "^15.3.2",
     "sass-loader": "^4.0.2",
     "script-loader": "^0.7.0",
