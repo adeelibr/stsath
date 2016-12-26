@@ -25,6 +25,7 @@
     "react-router": "^3.0.0",
     "sequelize": "^3.28.0",
     "sequelize-cli": "^2.5.1",
+    "serve-favicon": "^2.3.2",
     "twit": "^2.2.5"
   },
   "devDependencies": {

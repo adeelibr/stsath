@@ -2,20 +2,12 @@ var webpack = require('webpack');
 var path = require('path');
 
 config = {
-
   // the entry file for the bundle
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
     './client/src/app.jsx',
   ],
-
-  // the bundle file we will get in the result
-  output: {
-    path: path.join(__dirname, '/client/dist/js'),
-    filename: 'app.js',
-  },
-
   externals: {
     jquery: 'jQuery',
   },
@@ -25,16 +17,20 @@ config = {
       'jQuery': 'jquery'
     })
   ],
+  // the bundle file we will get in the result
+  output: {
+    path: path.join(__dirname, '/client/dist/js'),
+    filename: 'app.js',
+  },
   resolve: {
     root: __dirname,
     modulesDirectories: [
       'node_modules',
-      './client/components',
-      './client/api'
+      './client/src/components',
+      './client/src/api'
     ],
     extensions: ['', '.js', '.jsx']
   },
-
   module: {
     // apply loaders to files that meet given conditions
     loaders: [
@@ -69,9 +65,7 @@ config = {
       },
     ]
   },
-
   devtool: 'source-map',
-
   // start Webpack in a watch mode, so Webpack will rebuild the bundle on changes
   watch: true
 };
