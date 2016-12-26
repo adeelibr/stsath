@@ -6,9 +6,11 @@
   "scripts": {
     "start": "node app.js",
     "devstart": "nodemon app.js",
-    "bundle": "./node_modules/.bin/webpack --colors"
+    "bundle": "./node_modules/.bin/webpack --colors",
+    "bundleproduction": "./node_modules/.bin/webpack -p"
   },
   "dependencies": {
+    "Sentimental": "^1.0.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
@@ -22,7 +24,8 @@
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0",
     "sequelize": "^3.28.0",
-    "sequelize-cli": "^2.5.1"
+    "sequelize-cli": "^2.5.1",
+    "twit": "^2.2.5"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",

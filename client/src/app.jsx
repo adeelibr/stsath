@@ -9,7 +9,7 @@ let App = React.createClass({
   render: function () {
     return (
       <div className="container">
-        <p className="color-bg">Hello</p>
+        <p className="color-bg">Hello World!</p>
       </div>
     );
   }

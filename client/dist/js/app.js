@@ -120,7 +120,7 @@
 	      _react2.default.createElement(
 	        'p',
 	        { className: 'color-bg' },
-	        'Hello'
+	        'Hello World!'
 	      )
 	    );
 	  }
