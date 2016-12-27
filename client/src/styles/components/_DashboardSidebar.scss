@@ -1,0 +1,35 @@
+.sidenav {
+  height: 100%;
+  width: inherit;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+
+	a:first-child {
+		font-family: 'Neucha', cursive;
+		// text-align: center;
+    text-decoration: none;
+    font-size: 40px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+	}
+
+	a {
+		padding: 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+	}
+
+	a:hover {
+		color: #f1f1f1;
+	}
+}

@@ -1,13 +1,13 @@
 import React from 'react';
-import Navigation from 'Navigation';
+import Navigation from 'public/common/Navigation';
 
-let Main = (props) => {
+let MainLayout = (props) => {
   return (
     <div className="fluid-container">
       <Navigation />
       {props.children}
-    </div>
+    </div> 
   );
 };
 
-export default Main;
+export default MainLayout;
