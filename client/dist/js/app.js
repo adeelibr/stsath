@@ -111,17 +111,9 @@
 	
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 	
-	var _darkBaseTheme = __webpack_require__(647);
-	
-	var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
-	
 	var _MuiThemeProvider = __webpack_require__(239);
 	
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
-	
-	var _getMuiTheme = __webpack_require__(326);
-	
-	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 	
 	var _reactTapEventPlugin = __webpack_require__(387);
 	
@@ -191,8 +183,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
-	(0, _reactTapEventPlugin2.default)();
+	(0, _reactTapEventPlugin2.default)(); // Needed for onTouchTap
 	
 	__webpack_require__(410);
 	
@@ -243,7 +234,7 @@
 	
 	_reactDom2.default.render(_react2.default.createElement(
 	  _MuiThemeProvider2.default,
-	  { muiTheme: (0, _getMuiTheme2.default)(_darkBaseTheme2.default) },
+	  null,
 	  _react2.default.createElement(App, null)
 	), document.getElementById('app'));
 
@@ -34901,9 +34892,9 @@
 	          _reactRouter.Link,
 	          { to: '/dashboard', className: '' },
 	          _react2.default.createElement(_materialUi.MenuItem, {
-	            primaryText: 'STSATH',
+	            primaryText: 'Dashboard',
 	            onTouchTap: handleToggle,
-	            style: { backgroundColor: 'red', color: 'white' }
+	            style: { backgroundColor: '#1E88E5', color: 'white' }
 	          })
 	        ),
 	        _react2.default.createElement(
@@ -69037,49 +69028,6 @@
 	ContentAddCircle.muiName = 'SvgIcon';
 	
 	exports.default = ContentAddCircle;
-
-/***/ },
-/* 645 */,
-/* 646 */,
-/* 647 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _colors = __webpack_require__(341);
-	
-	var _colorManipulator = __webpack_require__(339);
-	
-	var _spacing = __webpack_require__(342);
-	
-	var _spacing2 = _interopRequireDefault(_spacing);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  spacing: _spacing2.default,
-	  fontFamily: 'Roboto, sans-serif',
-	  palette: {
-	    primary1Color: _colors.cyan700,
-	    primary2Color: _colors.cyan700,
-	    primary3Color: _colors.grey600,
-	    accent1Color: _colors.pinkA200,
-	    accent2Color: _colors.pinkA400,
-	    accent3Color: _colors.pinkA100,
-	    textColor: _colors.fullWhite,
-	    secondaryTextColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.7),
-	    alternateTextColor: '#303030',
-	    canvasColor: '#303030',
-	    borderColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
-	    disabledColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
-	    pickerHeaderColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.12),
-	    clockCircleColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.12)
-	  }
-	};
 
 /***/ }
 /******/ ]);

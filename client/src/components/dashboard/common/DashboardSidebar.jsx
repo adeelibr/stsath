@@ -28,9 +28,9 @@ class Sidebar extends Component {
       >
         <Link to='/dashboard' className="">
           <MenuItem
-            primaryText="STSATH"
+            primaryText="Dashboard"
             onTouchTap={handleToggle}
-            style={{backgroundColor: 'red', color: 'white'}}
+            style={{backgroundColor: '#1E88E5', color: 'white'}}
           />
         </Link>
         <Link to='/dashboard/search'>
