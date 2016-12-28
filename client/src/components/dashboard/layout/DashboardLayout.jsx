@@ -7,6 +7,8 @@ class DashboardLayout extends Component {
 
   constructor (props) {
     super(props);
+    this.state = { open: false };
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentWillMount () {
@@ -16,21 +18,16 @@ class DashboardLayout extends Component {
     }
   }
 
+  handleToggle = () => this.setState({ open: !this.state.open });
+
   render () {
     let {children} = this.props;
+    let {open} = this.state;
     return (
       <div className="container-fluid">
-
-        <div className="row">
-          <div className="col-md-2 col-sm-2">
-            <DashboardSidebar />
-          </div>
-          <div className="col-md-10 col-sm-10">
-            <DashboardHeader />
-            {children}
-          </div>
-        </div>
-
+        <DashboardSidebar open={open} handleToggle={this.handleToggle} />
+        <DashboardHeader handleToggle={this.handleToggle} />
+        {children}
       </div>
     );
   }

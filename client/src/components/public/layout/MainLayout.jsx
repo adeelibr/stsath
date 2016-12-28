@@ -6,7 +6,7 @@ let MainLayout = (props) => {
     <div className="fluid-container">
       <Navigation />
       {props.children}
-    </div> 
+    </div>
   );
 };
 

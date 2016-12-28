@@ -1,38 +1,66 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { IndexLink, Link } from 'react-router';
+import { AppBar, Drawer, MenuItem, RaisedButton } from 'material-ui';
 
-let Navigation = (props) => {
-  return (
-    <nav className="navbar navbar-inverse">
-      <div className="container-fluid">
-        {/* Brand and toggle get grouped for better mobile display */}
-        <div className="navbar-header">
-          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-            <span className="sr-only">Toggle navigation</span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
-          <IndexLink to='/' className="navbar-brand">STSATH</IndexLink>
-        </div>
+import HomeIcon from 'material-ui/svg-icons/action/home';
+import AccountCircleIcon from 'material-ui/svg-icons/action/account-circle';
+import AddCircleIcon from 'material-ui/svg-icons/content/add-circle';
+import CLoseIcon from 'material-ui/svg-icons/navigation/close';
+import WhatshotIcon from 'material-ui/svg-icons/social/whatshot';
+import QAIcon from 'material-ui/svg-icons/action/question-answer';
+import ContactIcon from 'material-ui/svg-icons/communication/contacts';
 
-        {/* Collect the nav links, forms, and other content for toggling */}
-        <div className="collapse navbar-collapse" id="navbar-collapse">
-          <ul className="nav navbar-nav">
-            <li><IndexLink to='/' activeClassName="active">Home</IndexLink></li>
-            <li><Link to='/about' activeClassName="active">About</Link></li>
-            <li><Link to='/faq' activeClassName="active">FAQ</Link></li>
-            <li><Link to='/contact' activeClassName="active">Get In Touch</Link></li>
-          </ul>
 
-          <ul className="nav navbar-nav navbar-right">
-            <li><Link to='/login' activeClassName="active">Login</Link></li>
-            <li><Link to='/signup' activeClassName="active">Create An Account</Link></li>
-          </ul>
-        </div> {/* end of .navbar-collapse */}
-      </div> {/* end of .container-fluid */}
-    </nav>
-  );
+class Navigation extends Component {
+
+  constructor (props) {
+    super(props);
+    this.state = { open: false };
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  handleToggle = () => this.setState({ open: !this.state.open });
+
+  render () {
+    return (
+      <nav>
+        <AppBar
+          title="Smart Twitter Sentiment Analysis On Tweets & Hashtags"
+          onLeftIconButtonTouchTap={this.handleToggle}
+        />
+        <Drawer
+          docked={false}
+          width={300}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({open})}
+        >
+          <MenuItem
+            onTouchTap={this.handleToggle}
+            primaryText=""
+            secondaryText="x"
+          />
+          <IndexLink to='/'>
+            <MenuItem primaryText="Home" leftIcon={<HomeIcon />} onTouchTap={this.handleToggle} />
+          </IndexLink>
+          <Link to='/about'>
+            <MenuItem primaryText="About" leftIcon={<WhatshotIcon />} onTouchTap={this.handleToggle} />
+          </Link>
+          <Link to='/faq'>
+            <MenuItem primaryText="FAQ" leftIcon={<QAIcon />} onTouchTap={this.handleToggle} />
+          </Link>
+          <Link to='/contact'>
+            <MenuItem primaryText="Contact" leftIcon={<ContactIcon />} onTouchTap={this.handleToggle} />
+          </Link>
+          <Link to='/login'>
+            <MenuItem primaryText="Login" leftIcon={<AccountCircleIcon />} onTouchTap={this.handleToggle} />
+          </Link>
+          <Link to='/signup'>
+            <MenuItem primaryText="Create An Account" leftIcon={<AddCircleIcon />} onTouchTap={this.handleToggle} />
+          </Link>
+        </Drawer>
+      </nav>
+    );
+  }
 }
 
 export default Navigation;

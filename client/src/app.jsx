@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
 import createHashHistory from 'history/lib/createHashHistory'
 
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+// Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 require('style!css!sass!./styles/app.sass');
 
 import MainLayout from 'public/layout/MainLayout';
@@ -51,6 +58,8 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-  <App />,
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <App />
+  </MuiThemeProvider>,
   document.getElementById('app')
 );
