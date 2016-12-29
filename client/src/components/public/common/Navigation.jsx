@@ -37,7 +37,7 @@ class Navigation extends Component {
           <MenuItem
             onTouchTap={this.handleToggle}
             primaryText=""
-            secondaryText="x"
+            rightIcon={<CLoseIcon />}
           />
           <IndexLink to='/'>
             <MenuItem primaryText="Home" leftIcon={<HomeIcon />} onTouchTap={this.handleToggle} />

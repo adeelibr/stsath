@@ -3,9 +3,11 @@ import Navigation from 'public/common/Navigation';
 
 let MainLayout = (props) => {
   return (
-    <div className="fluid-container">
+    <div>
       <Navigation />
-      {props.children}
+      <div  className="container-fluid no-padding">
+        {props.children}
+      </div>
     </div>
   );
 };

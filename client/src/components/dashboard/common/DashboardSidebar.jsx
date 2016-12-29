@@ -42,6 +42,9 @@ class Sidebar extends Component {
         <Link to='/dashboard/collection'>
           <MenuItem primaryText="Collections" leftIcon={<QAIcon />} onTouchTap={handleToggle} />
         </Link>
+        <Link to='/dashboard/feedback'>
+          <MenuItem primaryText="Feedback" leftIcon={<QAIcon />} onTouchTap={handleToggle} />
+        </Link>
         <Link to='/dashboard/profile'>
           <MenuItem primaryText="Edit Profile" leftIcon={<QAIcon />} onTouchTap={handleToggle} />
         </Link>
