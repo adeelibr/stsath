@@ -18,16 +18,20 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "jsonwebtoken": "^7.2.1",
+    "material-auto-rotating-carousel": "^1.1.0",
     "material-ui": "^0.16.6",
     "morgan": "~1.7.0",
     "mysql": "^2.12.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-motion": "^0.4.7",
     "react-router": "^3.0.0",
+    "react-swipeable-views": "^0.9.3",
     "sequelize": "^3.28.0",
     "sequelize-cli": "^2.5.1",
     "serve-favicon": "^2.3.2",
-    "twit": "^2.2.5"
+    "twit": "^2.2.5",
+    "validator": "^6.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
