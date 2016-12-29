@@ -12,6 +12,7 @@ let HomePage = (props) => {
       mobile={true}
       style={{ position: 'inherit' }}
       open
+      onStart={() => props.router.push('/signup')}
     >
       <Slide
         media={<img src="http://www.icons101.com/icon_png/size_256/id_79394/youtube.png" />}
