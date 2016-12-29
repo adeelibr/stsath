@@ -68044,7 +68044,10 @@
 	      landscape: true,
 	      mobile: true,
 	      style: { position: 'inherit' },
-	      open: true
+	      open: true,
+	      onStart: function onStart() {
+	        return props.router.push('/signup');
+	      }
 	    },
 	    _react2.default.createElement(_materialAutoRotatingCarousel.Slide, {
 	      media: _react2.default.createElement('img', { src: 'http://www.icons101.com/icon_png/size_256/id_79394/youtube.png' }),
