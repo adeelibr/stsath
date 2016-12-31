@@ -1,28 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
-
-class Sidebar extends Component {
-
-  render() {
-    let {handleToggle} = this.props;
-
+let DashboardHeader = (props) => {
     return (
       <div className="row">
-        <div className="col-xs-8"></div>
-        <div className="col-xs-3">
+        <div className="col-xs-12">
           <h4 className="text-right user-name-display">Hi, User</h4>
+          <hr />
         </div>
-        <div className="col-xs-1">
-          <IconButton tooltip="Menu" onClick={handleToggle}>
-            <MenuIcon />
-          </IconButton>
-        </div>
-        <hr/>
       </div>
     );
-  }
 }
 
-export default Sidebar;
+export default DashboardHeader;
