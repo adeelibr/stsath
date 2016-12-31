@@ -1,35 +1,92 @@
-.sidenav {
-  height: 100%;
-  width: inherit;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 30px;
+.nav-side-menu {
+  overflow: auto;
+	position: fixed;
+	left: 0;
+	width: inherit;
+	height: 100%;
+	color: $primary-color;
+	background-color: $secondary-color;
+	border-right: 1px solid $primary-color;
+	font-size: 12px;
 
-	a:first-child {
-		font-family: 'Neucha', cursive;
-		// text-align: center;
-    text-decoration: none;
-    font-size: 40px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
+  @media (max-width: 767px) {
+		position: relative;
+		width: 100%;
+		margin-bottom: 10px;
 	}
+}
 
-	a {
-		padding: 8px 32px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
-	}
+.navbar-toggle {
+  border: 1px solid #fff;
+  border-radius: 4px;
+}
 
-	a:hover {
-		color: #f1f1f1;
+.nav-side-menu a {
+	text-decoration: none;
+	color: $primary-color;
+	display: block;
+	width: 100%;
+}
+
+.nav-side-menu .toggle-btn {
+	background-color: #d81312;
+	display: none;
+}
+
+.nav-side-menu ul,
+.nav-side-menu li {
+	list-style: none;
+	padding: 0px;
+	margin: 10px 0px;
+	line-height: 48px;
+	cursor: pointer;
+}
+
+// .nav-side-menu ul :not(collapsed) svg:before,
+// .nav-side-menu li :not(collapsed) svg:before {
+// 	display: inline-block;
+// 	padding-left: 10px;
+// 	padding-right: 10px;
+// 	vertical-align: middle;
+// 	float: right;
+// }
+
+.nav-side-menu li {
+	padding-left: 0px;
+	border-left: 4px solid #d81312;
+	border-bottom: 1px solid #23282e;
+}
+
+/*.nav-side-menu li:hover a, */
+.nav-side-menu li:hover{
+	color: #fff;
+	background-color: #d81312;
+	border-left: 3px solid #fff;
+}
+
+.nav-side-menu li:hover a{
+	color: #fff;
+}
+
+.nav-side-menu li a i {
+	width: 20px;
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+.nav-side-menu ul.active,
+.nav-side-menu li.active {
+	color: #252d3a;
+	background-color: #fff;
+	border-left : 3px solid #f2510d;
+}
+
+.nav-side-menu li.active a{
+	color: #454545;
+}
+
+.nav-side-menu .menu-list .menu-content {
+  @media (min-width: 767px) {
+		display: block;
 	}
 }
