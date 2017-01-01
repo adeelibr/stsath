@@ -1,5 +1,6 @@
 var twit = require('twit');
-var sentimental = require('Sentimental');
+// var sentimental = require('Sentimental');
+var sentiment = require('../sentiment/sentiment');
 
 var config = require('../../config');
 
@@ -22,37 +23,23 @@ exports.choice = function (req, res, next)  {
     let choiceOneTweets = [];
     let choiceTwoTweets = [];
 
-    let highestScore = -Infinity;
-    let highestChoice = null;
-
     getTweets(choiceOne)
     .then((res) => {
-      let statuses = res.data.statuses;
-      choiceOneTweets = statuses;
-      choiceOneScore = performAnalysis(choiceOneTweets);
+      let data = performAnalysis(res.data.statuses);
+      choiceOneTweets = data.response;
+      choiceOneScore = data.score;
       return getTweets(choiceTwo)
     })
     .then((res) => {
-      let statuses = res.data.statuses;
-      choiceTwoTweets = statuses;
-      choiceTwoScore = performAnalysis(choiceTwoTweets);
-    })
-    .then(() => {
-      if (choiceOneScore > choiceTwoScore) {
-        highestScore = choiceOneScore;
-        highestChoice = choiceOne
-      } else {
-        highestScore = choiceTwoScore;
-        highestChoice = choiceTwo;
-      }
+      let data = performAnalysis(res.data.statuses);
+      choiceTwoTweets = data.response;
+      choiceTwoScore = data.score;
     })
     .then(() => {
       res.status(200).json({
         success: true,
         choiceOneScore,
         choiceTwoScore,
-        highestScore,
-        highestChoice,
         choiceOneTweets,
         choiceTwoTweets
       }).end();
@@ -65,20 +52,21 @@ exports.choice = function (req, res, next)  {
 
 exports.query = function (req, res, next) {
   var word = req.query.word;
-  let score = 0;
   let tweets = [];
+  let score = 0;
 
   getTweets(word)
   .then((res) => {
-    tweets = res.data.statuses;
-    score = performAnalysis(tweets);
+    let data = performAnalysis(res.data.statuses);
+    tweets = data.response;
+    score = data.score;
   })
   .then(() => {
     res.status(200).json({
       success: true,
       word,
-      score,
-      tweets
+      avgerageScore: score,
+      data: tweets,
     }).end();
   })
   .catch((err) => {
@@ -87,7 +75,7 @@ exports.query = function (req, res, next) {
 }
 
 const getTweets = function (choice) {
-  return twitter.get('search/tweets', {q: '' + choice, count: 100}, function(err, data) {
+  return twitter.get('search/tweets', {q: '' + choice, count: 4}, function(err, data) {
     if (err) {
       const reason = new Error(err);
       return Promise.reject(reason);
@@ -98,19 +86,26 @@ const getTweets = function (choice) {
   });
 };
 const performAnalysis = function (tweetSet) {
-  // For Every Choice Initialize tweetSet results to 0
-  var results = 0;
+  let results  = 0; // For Every Choice Initialize tweetSet results to 0
+  let score = 0;
+  let response = [];
+
   for (var i=0; i < tweetSet.length; i++) {
+
+    var resp = {};
+    resp.tweet = tweetSet[i];
+    resp.sentiment = sentiment(tweetSet[i]['text']);
+    response.push({ tweet: resp.tweet, sentiment: resp.sentiment });
+
     var tweet = tweetSet[i]['text'];
-    var retweets = tweetSet[i]['retweet_count'];
-    var favorites = tweetSet[i]['favorite_count'];
-    // Remove all the # hashtags from the tweet text
-    tweet = tweet.replace('#', '');
-    // # example sentimental.analyze('something'); // Score: -6, Comparative:-1.5
-    // returns an array [score, comparative]
-    var score = sentimental.analyze(tweet)['score'];
+    tweet = tweet.replace('#', ''); // Remove all the # hashtags from the tweet text
+    let retweets = tweetSet[i]['retweet_count'];
+    let favorites = tweetSet[i]['favorite_count'];
+
+    let Score = sentiment(tweet).score;
+
     // Calculate score
-    results += score;
+    results += Score;
     if (score > 0) {
       if (retweets > 0) {
         results += (Math.log(retweets)/Math.log(2));
@@ -129,6 +124,8 @@ const performAnalysis = function (tweetSet) {
       results += 0;
     }
   }
-  // return score
-  return (results/tweetSet.length);
+
+  score = (results/tweetSet.length);
+  data = {score, response};
+  return data;
 }
