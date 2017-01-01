@@ -63,6 +63,29 @@ exports.choice = function (req, res, next)  {
 
 }; // end of module.exports
 
+exports.query = function (req, res, next) {
+  var word = req.query.word;
+  let score = 0;
+  let tweets = [];
+
+  getTweets(word)
+  .then((res) => {
+    tweets = res.data.statuses;
+    score = performAnalysis(tweets);
+  })
+  .then(() => {
+    res.status(200).json({
+      success: true,
+      word,
+      score,
+      tweets
+    }).end();
+  })
+  .catch((err) => {
+    console.log('Error is: ', err.message);
+  });
+}
+
 const getTweets = function (choice) {
   return twitter.get('search/tweets', {q: '' + choice, count: 100}, function(err, data) {
     if (err) {
