@@ -10,9 +10,7 @@ var twitter = new twit({
   access_token_secret: config.twitter.access_token_secret
 });
 
-module.exports = {
-
-  choice: function (req, res, next) {
+exports.choice = function (req, res, next)  {
     var choiceOne = req.query.choice_one;
     var choiceTwo = req.query.choice_two;
 
@@ -62,8 +60,6 @@ module.exports = {
     .catch((err) => {
       console.log('Error is: ', err.message);
     });
-
-  }
 
 }; // end of module.exports
 
