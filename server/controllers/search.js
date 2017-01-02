@@ -126,7 +126,13 @@ const performAnalysis = function (tweetSet) {
     var resp = {};
     resp.tweet = tweetSet[i];
     resp.sentiment = sentiment(tweetSet[i]['text']);
-    response.push({ tweet: resp.tweet, sentiment: resp.sentiment });
+    resp.sentiment.wordsCount = resp.sentiment.words.length;
+    resp.sentiment.positiveWordsCount = resp.sentiment.positive.length;
+    resp.sentiment.negativeWordsCount = resp.sentiment.negative.length;
+    response.push({
+      tweet: resp.tweet,
+      sentiment: resp.sentiment
+    });
 
     var tweet = tweetSet[i]['text'];
     tweet = tweet.replace('#', ''); // Remove all the # hashtags from the tweet text
