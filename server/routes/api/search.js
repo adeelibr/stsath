@@ -7,6 +7,6 @@ var searchFunc = require('../../controllers/search');
 router.get('/choice', searchFunc.choice);
 
 // @endpoint api/search/query
-router.get('/query', searchFunc.query);
+router.get('/query', searchFunc.search);
 
 module.exports = router;

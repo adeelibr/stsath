@@ -11,6 +11,27 @@ var twitter = new twit({
   access_token_secret: config.twitter.access_token_secret
 });
 
+function validateSearchFormBody (payload) {
+  const errors = {};
+  let isFormValid = true;
+  let message = '';
+
+  if (!payload || typeof payload.word !== 'string' || payload.word.trim().length === 0) {
+    isFormValid = false;
+    errors.word = 'Please provide a search query';
+  }
+
+  if (!isFormValid) {
+    message = 'Check the form for errors';
+  }
+
+  return {
+    success: isFormValid,
+    message,
+    errors
+  }
+}
+
 exports.choice = function (req, res, next)  {
     var choiceOne = req.query.choice_one;
     var choiceTwo = req.query.choice_two;
@@ -50,8 +71,18 @@ exports.choice = function (req, res, next)  {
 
 }; // end of module.exports
 
-exports.query = function (req, res, next) {
-  var word = req.query.word;
+exports.search = function (req, res, next) {
+  const validateResult = validateSearchFormBody(req.query);
+  if (!validateResult.success) {
+    return res.status(400).json({
+      success: false,
+      message: validateResult.message,
+      errors: validateResult.errors
+    }).end();
+  }
+
+  let word = req.query.word;
+
   let tweets = [];
   let score = 0;
 
