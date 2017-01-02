@@ -1,57 +1,64 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
+//
+// import RaisedButton from 'material-ui/RaisedButton';
+// import TextField from 'material-ui/TextField';
 
-import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
-
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import SearchForm from 'dashboard/components/SearchForm';
+import Report from 'dashboard/components/Report';
+import SearchQueryAPI from 'SearchQueryAPI';
 
 class DashboardSearchPage extends Component {
 
   constructor (props) {
     super(props);
     this.state = {
+      word: '',
       errors: {},
-      searchQuery: '',
+      show: false,
+      info: {},
     };
   }
 
   changeInfo = (e) => {
-    const searchQuery = e.target.value;
-    this.setState({ searchQuery });
+    const word = e.target.value;
+    this.setState({ word });
+  }
+
+  processForm = (e) => {
+    let {word} = this.state;
+    e.preventDefault();
+
+    SearchQueryAPI(word)
+    .then((res) =>{
+      if (!res.success) {
+        const errors = res.errors ? res.errors : {};
+        errors.summary = res.message;
+        this.setState({ errors });
+      } else {
+        this.setState({
+          show: res.success,
+          info: res,
+          errors: {},
+        });
+        // console.log('Form is valid', res);
+      }
+    });
   }
 
   render () {
-    let { errors, searchQuery } = this.state;
+    let { word, errors } = this.state;
+    let { show, info } = this.state;
 
     return (
-      <div className="">
-        <h3><SearchIcon /> Search</h3>
-        <form action="/">
-
-          <div className="row">
-            <div className="col-md-10 col-sm-8">
-              <TextField
-                floatingLabelText="Search Tweets & Hashtags"
-                name="search"
-                onChange={this.changeInfo}
-                errorText={errors.searchQuery}
-                value={searchQuery}
-                fullWidth={true}
-              />
-            </div>
-            <div className="col-md-2 col-sm-4">
-              <RaisedButton
-                type="submit"
-                label="Perform Sentiment"
-                className="inline-form-button"
-                primary={true}
-                fullWidth={true}
-              />
-            </div>
-          </div>
-
-        </form>
+      <div>
+        <SearchForm
+          onSubmit={this.processForm}
+          onChange={this.changeInfo}
+          errors={errors}
+          word={word}
+        />
+        <Report show={show} data={info} />
       </div>
     );
   }
