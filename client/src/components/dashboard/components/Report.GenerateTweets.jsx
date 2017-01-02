@@ -31,8 +31,10 @@ const ReportGenerateTweets = ({ tweets }) => {
                 leftAvatar={<Avatar src={obj.tweet.user.profile_image_url} />}
                 primaryText={obj.tweet.user.name}
               />
-              <Divider inset={true} />
             </List>
+            <p><b>Tweet:</b> {obj.tweet.text}</p>
+            <p><b>Status Posted At:</b> {obj.tweet.created_at}</p>
+            <p><b>User Since:</b> {obj.tweet.user.created_at}</p>
           </div>
           <div className="col-md-6 col-sm-6">
             <h4>Analyze:</h4>
@@ -65,6 +67,7 @@ const ReportGenerateTweets = ({ tweets }) => {
               </tbody>
             </table>
           </div>
+          <Divider inset={true} />
         </div>
       );
     });
