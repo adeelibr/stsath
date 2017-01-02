@@ -11,26 +11,30 @@ const Report = ({ show, data }) => {
     display: show ? 'block' : 'none'
   };
 
-  return (
-    <Card style={style} className="report">
-      <CardHeader
-        title="Report"
-        subtitle="Detailed Anaylysis"
-      />
-      <CardTitle title="Report" subtitle="Detailed Anaylysis" />
-      <CardText>
-        Disclaimer: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-      </CardText>
-      <CardText><b>Word Typed:</b> {data.word} <b>Average Score:</b> {data.avgerageScore}</CardText>
-      <ReportGenerateTweets tweets={data.data} />
-      <CardActions>
-        <FlatButton label="Export As PDF" />
-      </CardActions>
-  </Card>
-  );
+  let renderReport = () => {
+    return (
+      <Card style={style} className="report">
+        <CardHeader
+          title="Report"
+          subtitle="Detailed Anaylysis"
+          />
+        <CardTitle title="Report" subtitle="Detailed Anaylysis" />
+        <CardText>
+          Disclaimer: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+        </CardText>
+        <CardText><b>Word Typed:</b> {data.word} <b>Average Score:</b> {data.avgerageScore}</CardText>
+        {data.success && <ReportGenerateTweets tweets={data.data} />}
+        <CardActions>
+          <FlatButton label="Export As PDF" />
+        </CardActions>
+      </Card>
+    );
+  }
+
+  return show ? renderReport() : <div></div>;
 }
 
 Report.propTypes = {
