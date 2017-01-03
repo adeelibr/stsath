@@ -85,12 +85,24 @@ exports.search = function (req, res, next) {
 
   let tweets = [];
   let score = 0;
+  let wordsCount = 0;
+  let positiveWordsCount = 0;
+  let negativeWordsCount = 0;
+  let totalWords = [];
+  let positiveWords = [];
+  let negativeWords = [];
 
   getTweets(word)
   .then((res) => {
     let data = performAnalysis(res.data.statuses);
     tweets = data.response;
     score = data.score;
+    wordsCount = data.wordsCount;
+    positiveWordsCount = data.positiveWordsCount;
+    negativeWordsCount = data.negativeWordsCount;
+    totalWords = data.totalWords;
+    positiveWords = data.positiveWords;
+    negativeWords = data.negativeWords;
   })
   .then(() => {
     res.status(200).json({
@@ -98,15 +110,24 @@ exports.search = function (req, res, next) {
       word,
       avgerageScore: score,
       data: tweets,
+      infographic: {
+        wordsCount,
+        positiveWordsCount,
+        negativeWordsCount,
+        totalWords,
+        positiveWords,
+        negativeWords
+      }
     }).end();
   })
   .catch((err) => {
+    console.log('Error is: ', err);
     console.log('Error is: ', err.message);
   });
 }
 
 const getTweets = function (choice) {
-  return twitter.get('search/tweets', {q: '' + choice, count: 4}, function(err, data) {
+  return twitter.get('search/tweets', {q: '' + choice, count: 10}, function(err, data) {
     if (err) {
       const reason = new Error(err);
       return Promise.reject(reason);
@@ -120,12 +141,20 @@ const performAnalysis = function (tweetSet) {
   let results  = 0; // For Every Choice Initialize tweetSet results to 0
   let score = 0;
   let response = [];
+  let wordsCount = 0;
+  let positiveWordsCount = 0;
+  let negativeWordsCount = 0;
+  let totalWords = [];
+  let positiveWords = [];
+  let negativeWords = [];
 
   for (var i=0; i < tweetSet.length; i++) {
 
     var resp = {};
     resp.tweet = tweetSet[i];
     resp.sentiment = sentiment(tweetSet[i]['text']);
+    resp.sentiment.text = tweetSet[i]['text'];
+    resp.sentiment.id = tweetSet[i]['id_str'];
     resp.sentiment.wordsCount = resp.sentiment.words.length;
     resp.sentiment.positiveWordsCount = resp.sentiment.positive.length;
     resp.sentiment.negativeWordsCount = resp.sentiment.negative.length;
@@ -133,6 +162,13 @@ const performAnalysis = function (tweetSet) {
       tweet: resp.tweet,
       sentiment: resp.sentiment
     });
+
+    wordsCount += resp.sentiment.words.length;
+    positiveWordsCount += resp.sentiment.positive.length;
+    negativeWordsCount += resp.sentiment.negative.length;
+    totalWords.push(...resp.sentiment.words);
+    positiveWords.push(...resp.sentiment.positive);
+    negativeWords.push(...resp.sentiment.negative);
 
     var tweet = tweetSet[i]['text'];
     tweet = tweet.replace('#', ''); // Remove all the # hashtags from the tweet text
@@ -163,6 +199,15 @@ const performAnalysis = function (tweetSet) {
   }
 
   score = (results/tweetSet.length);
-  data = {score, response};
+  data = {
+    score,
+    response,
+    wordsCount,
+    positiveWordsCount,
+    negativeWordsCount,
+    totalWords,
+    positiveWords,
+    negativeWords
+  };
   return data;
 }
