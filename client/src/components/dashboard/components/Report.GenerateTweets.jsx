@@ -5,7 +5,7 @@ import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 
 const ReportGenerateTweets = ({ tweets }) => {
-  console.log(tweets);
+  // console.log(tweets);
 
   let renderArray = (list) => {
     if (list.length === 0) {

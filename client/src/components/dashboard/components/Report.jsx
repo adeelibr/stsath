@@ -4,12 +4,15 @@ import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Ca
 import FlatButton from 'material-ui/FlatButton';
 
 import ReportGenerateTweets from './Report.GenerateTweets';
+import ReportGenerateInfographic from './Report.GenerateInfographic';
 
 const Report = ({ show, data }) => {
 
   var style = {
     display: show ? 'block' : 'none'
   };
+
+  let SentimentData = show ? data.data.map(function(a) { return a.sentiment; }) : [];
 
   let renderReport = () => {
     return (
@@ -25,9 +28,12 @@ const Report = ({ show, data }) => {
           Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
         </CardText>
         <CardText><b>Word Typed:</b> {data.word} <b>Average Score:</b> {data.avgerageScore}</CardText>
+
+        {data.success && <ReportGenerateInfographic tweets={data.data} SentimentData={SentimentData} infographic={data.infographic} />}
         {data.success && <ReportGenerateTweets tweets={data.data} />}
+
         <CardActions>
-          <FlatButton label="Export As PDF" />
+          <FlatButton label="Let's Start Over" />
         </CardActions>
       </Card>
     );
