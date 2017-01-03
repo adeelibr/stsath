@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import ReportGenerateTweets from './Report.GenerateTweets';
 import ReportGenerateInfographic from './Report.GenerateInfographic';
 
-const Report = ({ show, data }) => {
+const Report = ({ show, data, clearForm }) => {
 
   var style = {
     display: show ? 'block' : 'none'
@@ -33,7 +33,7 @@ const Report = ({ show, data }) => {
         {data.success && <ReportGenerateTweets tweets={data.data} />}
 
         <CardActions>
-          <FlatButton label="Let's Start Over" />
+          <FlatButton label="Let's Start Over" onClick={clearForm} />
         </CardActions>
       </Card>
     );
@@ -44,7 +44,8 @@ const Report = ({ show, data }) => {
 
 Report.propTypes = {
   show: PropTypes.bool.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  clearForm: PropTypes.func.isRequired
 };
 
 export default Report;

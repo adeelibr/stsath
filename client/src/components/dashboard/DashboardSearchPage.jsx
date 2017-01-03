@@ -46,6 +46,15 @@ class DashboardSearchPage extends Component {
     });
   }
 
+  clearForm = () => {
+    this.setState({
+      word: '',
+      errors: {},
+      show: false,
+      info: {},
+    })
+  }
+
   render () {
     let { word, errors } = this.state;
     let { show, info } = this.state;
@@ -58,7 +67,7 @@ class DashboardSearchPage extends Component {
           errors={errors}
           word={word}
         />
-        <Report show={show} data={info} />
+      <Report show={show} data={info} clearForm={this.clearForm} />
       </div>
     );
   }
