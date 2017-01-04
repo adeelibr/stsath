@@ -1,0 +1,31 @@
+.about-founder-info {
+  margin-top: 20px;
+  padding: 15px;
+}
+
+.author {
+  background-color: #FFF;
+  box-shadow: 0 0 1px #CCC;
+}
+
+.author .author-img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+}
+
+.author .author-title {
+  padding: 10px 20px;
+  background-color: #00bcd4;
+  color: #fff;
+  font-size: 18px;
+}
+
+.author .content {
+  padding: 15px;
+}
