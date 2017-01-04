@@ -59,76 +59,105 @@ class AboutPage extends React.Component {
     const {stepIndex} = this.state;
 
     return (
-      <div className="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-        <Stepper
-          activeStep={stepIndex}
-          linear={false}
-          orientation="vertical"
-        >
-          <Step>
-            <StepButton onTouchTap={() => this.setState({stepIndex: 0})}>
-              About Us
-            </StepButton>
-            <StepContent>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              {this.renderStepActions(0)}
-            </StepContent>
-          </Step>
-          <Step>
-            <StepButton onTouchTap={() => this.setState({stepIndex: 1})}>
-              Motivation
-            </StepButton>
-            <StepContent>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              {this.renderStepActions(1)}
-            </StepContent>
-          </Step>
-          <Step>
-            <StepButton onTouchTap={() => this.setState({stepIndex: 2})}>
-              Reason Behind {' '} <b>STSATH</b>
-            </StepButton>
-            <StepContent>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              {this.renderStepActions(2)}
-            </StepContent>
-          </Step>
-        </Stepper>
+      <div className="row">
+        <div className="col-md-2 col-sm-1"></div>
 
-        <div className="row">
-          <div className="col-sm-2">
-            <Avatar
-              src="http://pbs.twimg.com/profile_background_images/593573080959569921/Zz2vEaj7.png"
-              size={80}
-            />
+        <div className="col-md-4 col-sm-5">
+          <Stepper
+            activeStep={stepIndex}
+            linear={false}
+            orientation="vertical"
+          >
+            <Step>
+              <StepButton onTouchTap={() => this.setState({stepIndex: 0})}>
+                About Us
+              </StepButton>
+              <StepContent>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                  nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                {this.renderStepActions(0)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepButton onTouchTap={() => this.setState({stepIndex: 1})}>
+                Motivation
+              </StepButton>
+              <StepContent>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                  nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                {this.renderStepActions(1)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepButton onTouchTap={() => this.setState({stepIndex: 2})}>
+                Reason Behind STSATH
+              </StepButton>
+              <StepContent>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                  nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                {this.renderStepActions(2)}
+              </StepContent>
+            </Step>
+          </Stepper>
+        </div>
+
+        <div className="col-md-4 col-sm-5">
+          <div className="author about-founder-info">
+            <div className="">
+              <img
+                src="https://pbs.twimg.com/profile_images/799840359031459840/MOM03REc.jpg"
+                className="img-responsive author-img"
+              />
+              <span className="author-title"><b>Adeel Imran</b></span>
+            </div>
+            <div className="content">
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                unknown printer took a galley of type and scrambled it to make a type specimen book.
+              </p>
+            </div>
           </div>
-          <div className="col-sm-10">
-            Hi, I am a software engineeer, and I am awesome
+          <div className="author about-founder-info">
+            <div className="">
+              <img
+                src="https://pbs.twimg.com/profile_images/799840359031459840/MOM03REc.jpg"
+                className="img-responsive author-img"
+              />
+            <span className="author-title"><b>Zaryab Feroz</b></span>
+            </div>
+            <div className="content">
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                unknown printer took a galley of type and scrambled it to make a type specimen book.
+              </p>
+            </div>
           </div>
         </div>
+
+        <div className="col-md-2 col-sm-1"></div>
       </div>
     );
   }

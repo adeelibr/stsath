@@ -5,7 +5,7 @@ let MainLayout = (props) => {
   return (
     <div>
       <Navigation />
-      <div  className="container-fluid no-padding">
+      <div className="container-fluid">
         {props.children}
       </div>
     </div>
