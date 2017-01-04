@@ -127,7 +127,7 @@ exports.search = function (req, res, next) {
 }
 
 const getTweets = function (choice) {
-  return twitter.get('search/tweets', {q: '' + choice, count: 10}, function(err, data) {
+  return twitter.get('search/tweets', {q: '' + choice, count: 15}, function(err, data) {
     if (err) {
       const reason = new Error(err);
       return Promise.reject(reason);
