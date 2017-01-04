@@ -7,7 +7,8 @@ import ReportGenerateTweets from './Report.GenerateTweets';
 import ReportGenerateInfographic from './Report.GenerateInfographic';
 
 // import jsPDF from 'jspdf';
-// require('jspdf-autotable');
+var jsPDF = require('jspdf');
+require('jspdf-autotable');
 
 const Report = ({ show, data, clearForm }) => {
 
@@ -45,15 +46,15 @@ const Report = ({ show, data, clearForm }) => {
 
   let exportPDF = () => {
     console.log('Export PDF')
-    // let doc = new jsPDF('p', 'pt');
-    // doc.text("Sentiment Detailed Analysis", 10, 30);
-    // doc.autoTable(columns, rows, {
-    //   startY: 40,
-    //   margin: {horizontal: 10},
-    //   styles: {overflow: 'linebreak', columnWidth: 'wrap'},
-    //   columnStyles: {text: {columnWidth: 'auto'}}
-    // });
-    // doc.save("report.pdf");
+    var doc = new jsPDF('p', 'pt');
+    doc.text("Sentiment Detailed Analysis", 10, 30);
+    doc.autoTable(columns, rows, {
+      startY: 40,
+      margin: {horizontal: 10},
+      styles: {overflow: 'linebreak', columnWidth: 'wrap'},
+      columnStyles: {text: {columnWidth: 'auto'}}
+    });
+    doc.save("report.pdf");
   };
 
   let renderReport = () => {
