@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
+import Snackbar from 'material-ui/Snackbar';
+
+import UserAPI from 'UserAPI';
+import { RemoveToken } from 'Auth';
 import ProfileUpdateForm from './components/ProfileUpdateForm';
+import ProfileUpdatePasswordForm from './components/ProfileUpdatePasswordForm';
 
 class ProfilePage extends Component {
 
@@ -8,35 +13,46 @@ class ProfilePage extends Component {
     super(props);
     this.state = {
       errors: {},
-      user: {
-        username: '',
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      }
+      user: { username: '', first_name: '', last_name: '', email: '' },
+      password: { confirmPassword: '', newPassword: '', confirmNewPassword: '' },
+      snackbar: { autoHideDuration: 4000, message: 'Account Updated', open: false }
     };
   }
 
-  processForm = (e) => {
+  componentDidMount () {
+    let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    UserAPI.getUserById(userInfo.user.id)
+    .then((data) => {
+      if (!data.success) {
+        if (data.errors.token) {
+          RemoveToken();
+          router.push('/login');
+        }
+      }
+      this.setState({ user: data.user });
+    })
+    .catch((error) => {
+      console.log('Error In dashboard > ProfilePage.jsx', error);
+    });
+  }
+
+  processUpdateInfoForm = (e) => {
     let {user} = this.state;
     e.preventDefault();
-    // console.log('user: ', user);
 
-    // SignupAPI(user)
-    // .then((res) =>{
-    //   if (!res.success) {
-    //     const errors = res.errors ? res.errors : {};
-    //     errors.summary = res.message;
-    //     this.setState({ errors });
-    //   } else {
-    //     // console.log('Form is valid, Account Has Been Created');
-    //     let snackbar = this.state.snackbar;
-    //     snackbar.open = true;
-    //     this.setState({ errors: {}, snackbar });
-    //   }
-    // });
+    UserAPI.updateUserById(user.id, user)
+    .then((res) =>{
+      if (!res.success) {
+        const errors = res.errors ? res.errors : {};
+        errors.summary = res.message;
+        this.setState({ errors });
+      } else {
+        console.log('user: ', user);
+        let snackbar = this.state.snackbar;
+        snackbar.open = true;
+        this.setState({ errors: {}, snackbar });
+      }
+    });
   }
 
   changeUser = (e) => {
@@ -46,19 +62,55 @@ class ProfilePage extends Component {
     this.setState({ user });
   }
 
+  changePasswordFields = (e) => {
+    const field = e.target.name;
+    const password = this.state.password;
+    password[field] = e.target.value;
+    this.setState({ password });
+  }
+
+  processUpdatePasswordForm = (e) => {
+    let {password} = this.state;
+    e.preventDefault();
+
+    console.log(password);
+  }
+
+  handleActionTouchTap = () => {
+    let snackbar = this.state.snackbar;
+    snackbar.open = false;
+    this.setState({ snackbar });
+  }
+
   render () {
-    let {errors, user} = this.state;
+    let {errors, user, password} = this.state;
+    let { open, message, autoHideDuration } = this.state.snackbar;
 
     return (
       <div className="row">
         <div className="col-md-10 col-md-offset-1">
           <ProfileUpdateForm
-            onSubmit={this.processForm}
+            onSubmit={this.processUpdateInfoForm}
             onChange={this.changeUser}
             errors={errors}
             user={user}
             />
+          <ProfileUpdatePasswordForm
+            onSubmit={this.processUpdatePasswordForm}
+            onChange={this.changePasswordFields}
+            errors={errors}
+            password={password}
+            />
         </div>
+        <br/>
+        <Snackbar
+          open={open}
+          message={message}
+          action="Okay"
+          autoHideDuration={autoHideDuration}
+          onActionTouchTap={this.handleActionTouchTap}
+          onRequestClose={this.handleActionTouchTap}
+        />
       </div>
     );
   }

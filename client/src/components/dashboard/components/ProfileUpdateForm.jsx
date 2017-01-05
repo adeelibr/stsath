@@ -9,11 +9,11 @@ const ProfileUpdateForm = ({ onSubmit, onChange, errors, user }) => (
   <Card className="profile-update-form">
     <form action="/" onSubmit={onSubmit}>
       <h2>Update Profile</h2>
-
       {errors.summary && <p className="error-message">{errors.summary}</p>}
 
       <div className="field-line">
         <TextField
+          disabled={true}
           floatingLabelText="Username"
           name="username"
           errorText={errors.username}
@@ -22,34 +22,32 @@ const ProfileUpdateForm = ({ onSubmit, onChange, errors, user }) => (
           fullWidth={true}
         />
       </div>
-
       <div className="row">
         <div className="col-md-6">
           <div className="field-line">
-        <TextField
-          floatingLabelText="First Name"
-          name="first_name"
-          errorText={errors.first_name}
-          onChange={onChange}
-          value={user.first_name}
-          fullWidth={true}
-        />
-      </div>
+            <TextField
+              floatingLabelText="First Name"
+              name="first_name"
+              errorText={errors.first_name}
+              onChange={onChange}
+              value={user.first_name}
+              fullWidth={true}
+            />
+          </div>
         </div>
         <div className="col-md-6">
           <div className="field-line">
-        <TextField
-          floatingLabelText="Last Name"
-          name="last_name"
-          errorText={errors.last_name}
-          onChange={onChange}
-          value={user.last_name}
-          fullWidth={true}
-        />
-      </div>
+            <TextField
+              floatingLabelText="Last Name"
+              name="last_name"
+              errorText={errors.last_name}
+              onChange={onChange}
+              value={user.last_name}
+              fullWidth={true}
+            />
+          </div>
         </div>
       </div>
-
       <div className="field-line">
         <TextField
           floatingLabelText="Email"
@@ -61,36 +59,11 @@ const ProfileUpdateForm = ({ onSubmit, onChange, errors, user }) => (
         />
       </div>
 
-      <div className="field-line">
-        <TextField
-          floatingLabelText="Password"
-          type="password"
-          name="password"
-          errorText={errors.password}
-          onChange={onChange}
-          value={user.password}
-          fullWidth={true}
-        />
-      </div>
-
-      <div className="field-line">
-        <TextField
-          floatingLabelText="Confirm Password"
-          type="password"
-          name="confirmPassword"
-          errorText={errors.confirmPassword}
-          onChange={onChange}
-          value={user.confirmPassword}
-          fullWidth={true}
-        />
-      </div>
-
       <div className="button-line pull-right">
-        <RaisedButton type="submit" label="Create Account" />
+        <RaisedButton type="submit" label="Update Profile Information" />
       </div>
 
-      <CardText>Have an account {'?'} <Link to={'/login'}>Sign In</Link>.</CardText>
-
+      <CardText>Check Out Our FAQs. <Link to={'/faq'}>Read More</Link>.</CardText>
     </form>
   </Card>
 );
