@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 const ProfileUpdateForm = ({ onSubmit, onChange, errors, user }) => (
-  <Card className="xsignup-form">
+  <Card className="profile-update-form">
     <form action="/" onSubmit={onSubmit}>
       <h2>Update Profile</h2>
 

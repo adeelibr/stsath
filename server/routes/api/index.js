@@ -18,6 +18,6 @@ router
   .post('/login', common.login)
   .post('/signup', common.signup)
   .use('/user', isAuth, user)
-  .use('/search', search);
+  .use('/search', isAuth, search);
 
 module.exports = router;

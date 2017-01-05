@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { AuthToken } from 'Auth';
+
 import DashboardSidebar from 'dashboard/common/DashboardSidebar';
 import DashboardHeader from 'dashboard/common/DashboardHeader';
 
@@ -10,9 +12,13 @@ class DashboardLayout extends Component {
   }
 
   componentWillMount () {
+    let {router} = this.props;
     let token = localStorage.getItem('token');
     if (!token) {
-      this.props.router.push('/login');
+      router.push('/login');
+    }
+    else {
+      AuthToken(token);
     }
   }
 

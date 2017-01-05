@@ -3,16 +3,6 @@ var users = models.users;
 
 module.exports = {
 
-	getAllUser: function (req, res, next) {
-		users.findAll({})
-		.then(function(users) {
-			if(users === null) {
-				return res.status(200).json({ success: false, message: "No Users Exist" }).end();
-			}
-			return res.status(200).json({ success: true, users: users }).end();
-		})
-	},
-
 	getUser: function (req, res, next) {
 		var id = req.params.id;
 		var user = req.user;
@@ -38,6 +28,17 @@ module.exports = {
 
 	delete: function (req, res, next) {
 			return res.status(200).send({ "user": "u" }).end();
-	}
+	},
+
+	getAllUser: function (req, res, next) {
+		users.findAll({})
+		.then(function(users) {
+			if(users === null) {
+				return res.status(200).json({ success: false, message: "No Users Exist" }).end();
+			}
+			return res.status(200).json({ success: true, users: users }).end();
+		})
+	},
+
 
 }

@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt-nodejs');
 const validator = require('validator');
 
 var models = require('../models');
-var users = models.users;
+var Users = models.users;
 
 function validateLoginFormBody(payload) {
   const errors = {};
@@ -93,7 +93,7 @@ module.exports = {
       }).end();
     }
 
-		users.findOne({ where: { username: username } })
+		Users.findOne({ where: { username: username } })
 		.then(function(user) {
 			if (!user) {
 				res.status(400).send({ success: false, message: 'Authentication failed. User not found.' });
@@ -101,9 +101,9 @@ module.exports = {
         if (!bcrypt.compareSync(req.body.password, user.hashed_password)) {
 					res.status(400).json({ success: false, message: 'Authentication failed. Wrong Password.' });
 				} else {
-					var payload = { username: username, password: password };
+					var payload = { user };
 					var token = jwt.sign(payload, req.app.get('superSecret'), {
-						expiresIn: 1440 // expires in 24 hours
+						expiresIn: '72h' // expires in 24 hours
 					});
 					res.status(200).json({ success: true, message: 'Enjoy Your Token.', token: token });
 				}
@@ -132,16 +132,29 @@ module.exports = {
 			email: req.body.email,
 			hashed_password: bcrypt.hashSync(req.body.password),
 		};
-
-		users.create(user)
-		.then(function(user) {
-      if (!user) {
+    Users.findAll({
+      where: {
+        username: user.username
+      }
+    })
+    .then((data) => {
+      if (data.length > 0) {
+        let errors = {};
+        errors.username = 'Username Already Exists';
+        let message = 'Check form for errors';
+        return res.status(400).json({ success: false, message: message, errors: errors }).end();
+      } else {
+        return Users.create(user)
+      }
+    })
+		.then((data) => {
+      if (!data) {
 				res.status(400).send({ success: false, message: 'User was not created.' });
-			} else if (user) {
-        return res.status(200).json({ success: true, message: 'Succesfully created account', user: user }).end();
+			} else if (data) {
+        return res.status(200).json({ success: true, message: 'Succesfully created account', user: data }).end();
       }
 		})
-    .catch(function(err) {
+    .catch((err) => {
 			return res.status(500).json({ success: false, message: "Internal Server Error" }).end();
 		})
 

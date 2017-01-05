@@ -8,6 +8,8 @@ import SearchForm from 'dashboard/components/SearchForm';
 import Report from 'dashboard/components/Report';
 import SearchQueryAPI from 'SearchQueryAPI';
 
+import { RemoveToken } from 'Auth';
+
 class DashboardSearchPage extends Component {
 
   constructor (props) {
@@ -27,11 +29,18 @@ class DashboardSearchPage extends Component {
 
   processForm = (e) => {
     let {word} = this.state;
+    let {router} = this.props;
     e.preventDefault();
 
     SearchQueryAPI(word)
     .then((res) =>{
       if (!res.success) {
+
+        if (res.errors.token) {
+          RemoveToken();
+          router.push('/login');
+        }
+
         const errors = res.errors ? res.errors : {};
         errors.summary = res.message;
         this.setState({ errors });

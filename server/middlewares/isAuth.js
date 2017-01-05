@@ -15,7 +15,9 @@ var isAuth = function(req, res, next) {
 	if (token) {
 		jwt.verify(token, req.app.get('superSecret'), function(err, decoded) {
 			if (err) {
-				return res.status(400).json({ success: false, message: 'Failed to authenticate token.' });
+				let errors = {};
+				errors.token = 'invalid token'
+				return res.status(400).json({ success: false, errors, message: 'Failed to authenticate token.' }).end();
 			} else {
 				// if everything is good, save to request for use in other routes
         req.decoded = decoded;

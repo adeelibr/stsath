@@ -8,6 +8,7 @@ class Signout extends Component {
 
   componentWillMount () {
     localStorage.removeItem('token');
+    localStorage.removeItem('userInfo');
     this.props.router.push('/');
   }
 
