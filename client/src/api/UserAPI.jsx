@@ -39,6 +39,26 @@ let UserAPI = {
     .catch((error) => {
       console.log('API getUserById UserAPI.js: ', error);
     });
+  },
+
+  updateUserPasswordById: function (id, payload) {
+    let url = config.API_URL + '/user/' + id + '/passwordchange';
+    let token = localStorage.getItem('token');
+
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer" + " " + token
+      },
+      body: JSON.stringify(payload)
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => {
+      console.log('API getUserById UserAPI.js: ', error);
+    });
   }
 
 };

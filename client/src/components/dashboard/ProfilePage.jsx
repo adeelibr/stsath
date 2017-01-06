@@ -12,7 +12,7 @@ class ProfilePage extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      errors: {},
+      errors: {}, passworderrors: {},
       user: { username: '', first_name: '', last_name: '', email: '' },
       password: { password: '', newPassword: '', newPasswordRepeat: '' },
       snackbar: { autoHideDuration: 4000, message: 'Account Updated', open: false }
@@ -71,9 +71,22 @@ class ProfilePage extends Component {
 
   processUpdatePasswordForm = (e) => {
     let {password} = this.state;
+    let {user} = this.state;
     e.preventDefault();
 
-    console.log(password);
+    UserAPI.updateUserPasswordById(user.id, password)
+    .then((res) => {
+      if (!res.success) {
+        const passworderrors = res.errors ? res.errors : {};
+        passworderrors.summary = res.message;
+        this.setState({ passworderrors });
+      } else {
+        // console.log('Success: ', res);
+        let snackbar = this.state.snackbar;
+        snackbar.open = true;
+        this.setState({ password: {}, passworderrors: {}, snackbar });
+      }
+    });
   }
 
   handleActionTouchTap = () => {
@@ -83,7 +96,7 @@ class ProfilePage extends Component {
   }
 
   render () {
-    let {errors, user, password} = this.state;
+    let {errors, user, passworderrors, password} = this.state;
     let { open, message, autoHideDuration } = this.state.snackbar;
 
     return (
@@ -98,7 +111,7 @@ class ProfilePage extends Component {
           <ProfileUpdatePasswordForm
             onSubmit={this.processUpdatePasswordForm}
             onChange={this.changePasswordFields}
-            errors={errors}
+            errors={passworderrors}
             password={password}
             />
         </div>

@@ -9,8 +9,8 @@ router.get('/:id', userFunc.getUser);
 // @endpoint api/user/:id Update user info
 router.post('/:id', userFunc.updateUserInfo);
 
-// @endpoint api/user/passwordchange/:id Update user info
-router.post('/passwordchange/:id', userFunc.updateUserPassword);
+// @endpoint api/user/:id/passwordchange Update user info
+router.post('/:id/passwordchange', userFunc.updateUserPassword);
 
 // @endpoint api/user/ Get all user
 router.get('/', userFunc.getAllUser);
