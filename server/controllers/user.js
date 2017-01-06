@@ -1,4 +1,5 @@
 const validator = require('validator');
+const bcrypt = require('bcrypt-nodejs');
 
 var models = require('../models');
 var Users = models.users;
@@ -58,6 +59,56 @@ module.exports = {
 		})
 	},
 
+	updateUserPassword: function (req, res, next) {
+		const validateResult = validateUpdateUserPasswordFormBody(req.body)
+		if (!validateResult.success) {
+      return res.status(400).json({
+        success: false,
+        message: validateResult.message,
+        errors: validateResult.errors
+      }).end();
+    }
+
+		let id = req.params.id;
+		let password = req.body;
+		let errors = {};
+
+		if (password.newPassword !== password.newPasswordRepeat) {
+			errors.newPasswordRepeat = 'Does not match new password field';
+			return res.status(400).json({
+        success: false, message: 'Check Form For Errors', errors: errors
+      }).end();
+		}
+
+		let newPassword = bcrypt.hashSync(password.newPassword);
+
+		Users.findOne({ where: { id: id } })
+		.then(function(user) {
+			if (!user) {
+				errors.user = 'User Does Not Exist';
+				return res.status(400).json({ success: false, message: 'Check Form For Errors', errors: errors }).end();
+			} else {
+				if (!bcrypt.compareSync(password.password, user.hashed_password)) {
+					errors.password = 'You provided a wrong password';
+					return res.status(400).json({ success: false, message: 'Check Form For Errors', errors: errors }).end();
+				} else {
+					return Users.update({ hashed_password: newPassword }, { where: { id: id } });
+				}
+			}
+		})
+		.then((data) => {
+			return Users.findOne({ where: { id : id } });
+		})
+		.then((data) => {
+			return res.status(200).json({ success: true, message: 'Succesfully updated password', user: data }).end();
+		})
+		.catch((error) => {
+			console.log(err);
+			return res.status(500).json({ success: false, message: "Internal Server Error" }).end();
+		});
+
+	},
+
 	delete: function (req, res, next) {
 		return res.status(200).send({ "user": "u" }).end();
 	},
@@ -97,6 +148,43 @@ function validateUpdateUserInfoFormBody(payload) {
   if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email) ) {
     isFormValid = false;
     errors.email = 'Please provide your Email';
+  }
+
+  if (!isFormValid) {
+    message = 'Check the form for errors';
+  }
+
+  return {
+    success: isFormValid,
+    message,
+    errors
+  }
+}
+function validateUpdateUserPasswordFormBody(payload) {
+  const errors = {};
+  let isFormValid = true;
+  let message = '';
+
+  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length === 0) {
+    isFormValid = false;
+    errors.password = 'Please provide your current password';
+  }
+
+  if (!payload || typeof payload.newPassword !== 'string' || payload.newPassword.trim().length === 0 || payload.newPassword.trim().length < 6) {
+    isFormValid = false;
+    errors.newPassword = 'Please provide your new password';
+		if (payload.newPassword.trim().length < 6) {
+			errors.newPassword = 'Must be atleast 6 characters.';
+		}
+  }
+
+  if (!payload || typeof payload.newPasswordRepeat !== 'string' || payload.newPasswordRepeat.trim().length === 0 || payload.newPasswordRepeat.trim().length < 6) {
+    isFormValid = false;
+		errors.newPasswordRepeat = 'Please provide your new password again.';
+		let len = payload.newPasswordRepeat.trim().length;
+		if (len < 6) {
+			errors.newPasswordRepeat = 'Must be atleast 6 characters.';
+		}
   }
 
   if (!isFormValid) {
