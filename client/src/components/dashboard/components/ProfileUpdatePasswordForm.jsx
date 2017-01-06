@@ -16,13 +16,14 @@ const ProfileUpdatePasswordForm = ({ onSubmit, onChange, errors, password }) => 
         <TextField
           floatingLabelText="Current Password"
           type="password"
-          name="confirmPassword"
-          errorText={errors.currentPassword}
+          name="password"
+          errorText={errors.password}
           onChange={onChange}
-          value={password.currentPassword}
+          value={password.password}
           fullWidth={true}
         />
       </div>
+
       <div className="field-line">
         <TextField
           floatingLabelText="New Password"
@@ -34,14 +35,15 @@ const ProfileUpdatePasswordForm = ({ onSubmit, onChange, errors, password }) => 
           fullWidth={true}
         />
       </div>
+
       <div className="field-line">
         <TextField
           floatingLabelText="Repeat Password"
           type="password"
-          name="confirmNewPassword"
-          errorText={errors.confirmNewPassword}
+          name="newPasswordRepeat"
+          errorText={errors.newPasswordRepeat}
           onChange={onChange}
-          value={password.confirmNewPassword}
+          value={password.newPasswordRepeat}
           fullWidth={true}
         />
       </div>

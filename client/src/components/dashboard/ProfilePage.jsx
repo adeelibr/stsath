@@ -14,7 +14,7 @@ class ProfilePage extends Component {
     this.state = {
       errors: {},
       user: { username: '', first_name: '', last_name: '', email: '' },
-      password: { confirmPassword: '', newPassword: '', confirmNewPassword: '' },
+      password: { password: '', newPassword: '', newPasswordRepeat: '' },
       snackbar: { autoHideDuration: 4000, message: 'Account Updated', open: false }
     };
   }
@@ -47,7 +47,7 @@ class ProfilePage extends Component {
         errors.summary = res.message;
         this.setState({ errors });
       } else {
-        console.log('user: ', user);
+        // console.log('user: ', user);
         let snackbar = this.state.snackbar;
         snackbar.open = true;
         this.setState({ errors: {}, snackbar });
