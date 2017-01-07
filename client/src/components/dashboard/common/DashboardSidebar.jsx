@@ -42,23 +42,7 @@ let Sidebar = (props) => {
               <span>Compare</span>
             </Link>
           </li>
-          <li data-toggle="collapse" data-target="#collection" className="collapsed">
-            <a><i><QAIcon /></i> Collection <span><CloseIcon /></span></a>
-          </li>
-          <ul className="sub-menu collapse" id="collection">
-            <li>
-              <Link to='/dashboard/collection'>
-                <i><QAIcon /></i>
-                <span>Search Collections</span>
-              </Link>
-            </li>
-            <li>
-              <Link to='/dashboard/collection'>
-                <i><QAIcon /></i>
-                <span>Compare Collections</span>
-              </Link>
-            </li>
-          </ul>
+
           <li>
             <Link to='/dashboard/feedback'>
               <i><QAIcon /></i>
@@ -84,3 +68,21 @@ let Sidebar = (props) => {
 }
 
 export default Sidebar;
+
+// <li data-toggle="collapse" data-target="#collection" className="collapsed">
+//   <a><i><QAIcon /></i> Collection <span><CloseIcon /></span></a>
+// </li>
+// <ul className="sub-menu collapse" id="collection">
+//   <li>
+//     <Link to='/dashboard/collection'>
+//       <i><QAIcon /></i>
+//       <span>Search Collections</span>
+//     </Link>
+//   </li>
+//   <li>
+//     <Link to='/dashboard/collection'>
+//       <i><QAIcon /></i>
+//       <span>Compare Collections</span>
+//     </Link>
+//   </li>
+// </ul>

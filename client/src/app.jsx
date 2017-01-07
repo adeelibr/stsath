@@ -21,7 +21,6 @@ import DashboardLayout from 'dashboard/layout/DashboardLayout';
 import DashboardMainPage from 'dashboard/DashboardMainPage';
 import DashboardSearchPage from 'dashboard/DashboardSearchPage';
 import DashboardComparePage from 'dashboard/DashboardComparePage';
-import DashboardCollectionPage from 'dashboard/DashboardCollectionPage';
 import DashboardUserFeedback from 'dashboard/DashboardUserFeedback';
 import ProfilePage from 'dashboard/ProfilePage';
 import Signout from 'dashboard/Signout';
@@ -45,7 +44,6 @@ class App extends React.Component {
           <IndexRoute component={DashboardMainPage} />
           <Route path="/dashboard/search" component={DashboardSearchPage} />
           <Route path="/dashboard/compare" component={DashboardComparePage} />
-          <Route path="/dashboard/collection" component={DashboardCollectionPage} />
           <Route path="/dashboard/profile" component={ProfilePage} />
           <Route path="/dashboard/feedback" component={DashboardUserFeedback} />
           <Route path="/signout" component={Signout} />
