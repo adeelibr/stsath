@@ -11,12 +11,21 @@ import AddCircleIcon from 'material-ui/svg-icons/content/add-circle';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import ContactIcon from 'material-ui/svg-icons/communication/contacts';
 
+import FontIcon from 'material-ui/FontIcon';
+
+const iconStyles = {
+  marginRight: 0,
+};
+
 let Sidebar = (props) => {
   return (
     <nav className="nav-side-menu">
 
       <div className="navbar-header">
-        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-content" aria-expanded="false">
+        <button
+          type="button" className="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#menu-content" aria-expanded="false"
+        >
           <span className="sr-only">Toggle navigation</span>
           <MenuIcon color={'#fff'} />
         </button>
@@ -26,42 +35,43 @@ let Sidebar = (props) => {
         <ul id="menu-content" className="menu-content collapse out">
           <li>
             <Link to='/dashboard/'>
-              <i><WhatshotIcon /></i>
-              <span>Dashboard</span>
+              <i><WhatshotIcon style={iconStyles} color={'#fff'} /></i>
+              <span className="nav-menu-name">Dashboard</span>
             </Link>
           </li>
           <li>
             <Link to='/dashboard/search'>
-              <i><WhatshotIcon /></i>
-              <span>Search</span>
+              <i><WhatshotIcon style={iconStyles} color={'#fff'} /></i>
+              <span className="nav-menu-name">Search</span>
             </Link>
           </li>
           <li>
             <Link to='/dashboard/compare'>
-              <i><QAIcon /></i>
-              <span>Compare</span>
+              <i><QAIcon style={iconStyles} color={'#fff'} /></i>
+              <span className="nav-menu-name">Compare</span>
             </Link>
           </li>
 
           <li>
             <Link to='/dashboard/feedback'>
-              <i><QAIcon /></i>
-              <span>Feedback</span>
+              <i><WhatshotIcon style={iconStyles} color={'#fff'} /></i>
+              <span className="nav-menu-name">Feedback</span>
             </Link>
           </li>
           <li>
             <Link to='/dashboard/profile'>
-              <i><QAIcon /></i>
-              <span>Edit Profile</span>
+              <i><QAIcon style={iconStyles} color={'#fff'} /></i>
+              <span className="nav-menu-name">Edit Profile</span>
             </Link>
           </li>
           <li>
             <Link to='/signout'>
-              <i><QAIcon /></i>
-              <span>Signout</span>
+              <i><QAIcon style={iconStyles} color={'#fff'} /></i>
+              <span className="nav-menu-name">Signout</span>
             </Link>
           </li>
         </ul>
+
       </div>
     </nav>
   );

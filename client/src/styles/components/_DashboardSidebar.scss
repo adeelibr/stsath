@@ -4,9 +4,9 @@
 	left: 0;
 	width: inherit;
 	height: 100%;
-	color: $primary-color;
-	background-color: $secondary-color;
-	border-right: 1px solid $primary-color;
+	color: $sidebar-text-color;
+	background-color: $sidebar-background-color;
+	border-right: 1px solid $sidebar-right-border-color;
 	font-size: 12px;
 
   @media (max-width: 767px) {
@@ -23,7 +23,7 @@
 
 .nav-side-menu a {
 	text-decoration: none;
-	color: $primary-color;
+	color: $sidebar-text-color;
 	display: block;
 	width: 100%;
 }
@@ -68,10 +68,16 @@
 	color: #fff;
 }
 
+// side menu name text
+.nav-menu-name {
+  font-size: 16px;
+  vertical-align: super;
+}
+
+// side menu icon surrounded in <i> tag
 .nav-side-menu li a i {
-	width: 20px;
 	padding-left: 10px;
-	padding-right: 20px;
+	padding-right: 10px;
 }
 
 .nav-side-menu ul.active,
