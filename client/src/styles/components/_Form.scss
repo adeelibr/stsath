@@ -26,10 +26,22 @@
   }
 }
 
+.inline-form-button {
+  margin-top: 20px;
+}
+
+.input-field-name {
+  padding-top: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #b7b7b7;
+  margin: 15px 0px;
+}
+
 .profile-update-form {
   padding: 10px;
 }
 
-.inline-form-button {
-  margin-top: 20px;
+.slider-no-bottom-extra-space {
+  margin-bottom: -20px;
 }
