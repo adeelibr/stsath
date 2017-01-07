@@ -8,7 +8,8 @@
     "devstart": "nodemon app.js",
     "bundle": "./node_modules/.bin/webpack --colors",
     "bundleproduction": "./node_modules/.bin/webpack -p",
-    "sequelizeinit": "node_modules/.bin/sequelize init"
+    "sequelizeinit": "node_modules/.bin/sequelize init",
+    "migration": "node_modules/.bin/sequelize db:migrate"
   },
   "dependencies": {
     "Sentimental": "^1.0.1",
