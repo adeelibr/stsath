@@ -4,8 +4,9 @@ By Adeel Imran
 
 
 ### Running App
+* Do An Npm Install
 * Start Server: npm start
-* Compile Client Side Code: npm run bundle'
+* Compile Fresh Client Code: npm run bundle
 
 ##### Now Go To Your Browser And Type:
 
@@ -18,15 +19,21 @@ Now, run the init command to create the files (config.json) and
 folders (“migrations”, “models”, and “seeders”): [First Time Only When Making App Structure]
 
 ```javascript
-$ node_modules/.bin/sequelize init
+$ node_modules/.bin/sequelize init or npm run sequelizeinit
 ```
 
-#### Sequelize Create Tables
-* node_modules/.bin/sequelize model:create --name users --attributes "username:string, first_name:string, last_name:string, email:string, hashed_password:string"
+###### Note: This step isn't required, because well you clone this repository these folders will already by their.  
+
+Go in the config.json file created and put your database information
+
 
 ### Sequelize Migrations
-Run the migration to create the tables:
+Then run the migration to create the tables:
 
 ``` javascript
-$ node_modules/.bin/sequelize db:migrate
+$ node_modules/.bin/sequelize db:migrate or npm run migrations
 ```
+
+#### Database Tables
+* users
+* feedbacks
