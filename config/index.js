@@ -1,4 +1,5 @@
 module.exports = {
+
   secret: 'eHo9qy4yz5960LDrJoXeSQJPIhPR3S',
   twitter: {
     consumer_key: 'IAmBCgTiyRwrzfh0iQnkjGiWD',
@@ -6,4 +7,5 @@ module.exports = {
     access_token: '17391021-vMLRNOgjYuEJUkwhJZIX2drWTyeGarDjQ8zy8GAVm',
     access_token_secret: 'FhbZ6ZFfyxbOxZ9kxEDifhmMjZjsTymhnCguZ1pkeWgbI'
   }
+
 };
