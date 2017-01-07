@@ -80,7 +80,7 @@ class DashboardUserFeedback extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-10 col-md-offset-1">
+        <div className="col-md-10 col-md-offset-1 bottom-space">
           <FeedbackForm
             onSubmit={this.onSubmitForm}
             onChange={this.changeFeedbackInputField}
@@ -88,15 +88,16 @@ class DashboardUserFeedback extends Component {
             errors={errors}
             feedback={feedback}
           />
-          <Snackbar
-            open={open}
-            message={message}
-            action="Okay"
-            autoHideDuration={autoHideDuration}
-            onActionTouchTap={this.handleActionTouchTap}
-            onRequestClose={this.handleActionTouchTap}
-          />
         </div>
+
+        <Snackbar
+          open={open}
+          message={message}
+          action="Okay"
+          autoHideDuration={autoHideDuration}
+          onActionTouchTap={this.handleActionTouchTap}
+          onRequestClose={this.handleActionTouchTap}
+          />
       </div>
     );
   }

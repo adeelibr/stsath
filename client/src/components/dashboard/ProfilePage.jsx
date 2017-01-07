@@ -101,7 +101,7 @@ class ProfilePage extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-10 col-md-offset-1">
+        <div className="col-md-10 col-md-offset-1 bottom-space">
           <ProfileUpdateForm
             onSubmit={this.processUpdateInfoForm}
             onChange={this.changeUser}
@@ -115,7 +115,6 @@ class ProfilePage extends Component {
             password={password}
             />
         </div>
-        <br/>
         <Snackbar
           open={open}
           message={message}
