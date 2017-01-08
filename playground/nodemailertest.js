@@ -23,17 +23,21 @@ var mailOptions = {
     // text: 'Hello world 🐴', // plaintext body
     html: `
         <p>
-          Dear Adeel, thanks for booking your Google I/O ticket with us.
+          Dear {username}, thanks for getting in touch with STSATH team. One of our
+          representative will get in touch with you shortly.
         </p>
         <p>
-          Account Details<br/>
-          Reservation number: IO12345<br/>
-          Order for: John Smith<br/>
-          Event: Google I/O 2013<br/>
-          Start time: May 15th 2013 8:00am PST<br/>
-          Venue: Moscone Center, 800 Howard St., San Francisco, CA 94103<br/>
+          Email Details (Copy)<br/>
+          Name: {person_name}<br/>
+          Email: {email}<br/>
+          Message: {message}<br/>
+          Message Sent At: {createAt_date}<br/>
+
+          <br/><br/><br/>
+
+          With Love,
+          The <a href="http://localhost:3000/">STSATH</a> Team<br/>
         </p>
-        <p><a href="http://localhost:3000/">Join Us</a></p>
 
         <script type="application/ld+json">
           {
