@@ -18,6 +18,7 @@ router.get('/', function(req, res) {
 router
   .post('/login', common.login)
   .post('/signup', common.signup)
+  .post('/contact', common.contact)
   .use('/user', isAuth, user)
   .use('/search', isAuth, search)
   .use('/feedback', isAuth, feedback);
