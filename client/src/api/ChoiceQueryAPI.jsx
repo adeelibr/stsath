@@ -1,7 +1,7 @@
 import config from './config';
 
-let SearchQueryAPI = (word) => {
-  let url = config.API_URL + '/choice?choice_one=' + word '&choice_two=' + word2;
+let ChoiceQueryAPI = (words) => {
+  let url = config.API_URL + '/search/choice?choice_one=' + words.word1 + '&choice_two=' + words.word2;
   let token = localStorage.getItem('token');
 
   return fetch(url, {
@@ -14,13 +14,10 @@ let SearchQueryAPI = (word) => {
   .then((res) => {
     return res.json();
   })
-  .then((res) => {
-    return res;
-  })
   .catch((error) => {
-    console.log('API SearchQueryAPI.js: ', error);
+    console.log('API ChoiceQueryAPI.js: ', error);
   });
 
 }
 
-export default SearchQueryAPI;
+export default ChoiceQueryAPI;
