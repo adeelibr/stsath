@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 
-import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
-
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import ChoiceForm from 'dashboard/components/ChoiceForm';
+import ChoiceQueryAPI from 'ChoiceQueryAPI';
 
 class DashboardComparePage extends Component {
 
@@ -11,63 +9,58 @@ class DashboardComparePage extends Component {
     super(props);
     this.state = {
       errors: {},
-      choice: {
-        choice1: '',
-        choice2: '',
+      words: {
+        word1: '',
+        word2: '',
       },
     };
   }
 
+  processForm = (e) => {
+    let {words} = this.state;
+    // let {router} = this.props;
+    e.preventDefault();
+
+    // console.log(words)
+    ChoiceQueryAPI(words)
+    .then((res) =>{
+      if (!res.success) {
+        if (res.errors.token) {
+          RemoveToken();
+          router.push('/login');
+        }
+        const errors = res.errors ? res.errors : {};
+        errors.summary = res.message;
+        this.setState({ errors });
+      } else {
+        this.setState({
+          show: res.success,
+          info: res,
+          errors: {},
+        });
+        console.log(res);
+      }
+    });
+  }
+
   changeInfo = (e) => {
     const field = e.target.name;
-    const choice = this.state.choice;
-    choice[field] = e.target.value;
-    this.setState({ choice });
+    const words = this.state.words;
+    words[field] = e.target.value;
+    this.setState({ words });
   }
 
   render () {
-    let { errors, choice } = this.state;
+    let { errors, words } = this.state;
 
     return (
       <div className="">
-        <h3><SearchIcon /> Perfom Sentiment On Two Choices</h3>
-        <form action="/">
-
-          <div className="row">
-            <div className="col-md-5 col-sm-4">
-              <TextField
-                floatingLabelText="Choice #2"
-                name="choice1"
-                onChange={this.changeInfo}
-                errorText={errors.choice1}
-                value={choice.choice1}
-                fullWidth={true}
-              />
-            </div>
-
-            <div className="col-md-5 col-sm-4">
-              <TextField
-                floatingLabelText="Choice #2"
-                name="choice2"
-                onChange={this.changeInfo}
-                errorText={errors.choice2}
-                value={choice.choice2}
-                fullWidth={true}
-              />
-            </div>
-
-            <div className="col-md-2 col-sm-4">
-              <RaisedButton
-                type="submit"
-                label="Perform Sentiment"
-                className="inline-form-button"
-                primary={true}
-                fullWidth={true}
-              />
-            </div>
-          </div>
-
-        </form>
+        <ChoiceForm
+          onSubmit={this.processForm}
+          onChange={this.changeInfo}
+          errors={errors}
+          words={words}
+        />
       </div>
     );
   }
