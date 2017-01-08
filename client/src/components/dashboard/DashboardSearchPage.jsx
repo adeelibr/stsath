@@ -76,12 +76,11 @@ class DashboardSearchPage extends Component {
           errors={errors}
           word={word}
         />
-      <Report
-        show={show}
-        data={info}
-        clearForm={this.clearForm}
-        generateReportPDF={this.generateReportPDF}
-      />
+        <Report
+          show={show}
+          data={info}
+          clearForm={this.clearForm}
+        />
       </div>
     );
   }
