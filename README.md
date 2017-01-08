@@ -23,7 +23,7 @@ folders (“migrations”, “models”, and “seeders”): [First Time Only Wh
 $ node_modules/.bin/sequelize init or npm run sequelizeinit
 ```
 
-###### Note: This step isn't required, because well you clone this repository these folders will already by their.  
+###### Note: This step isn't required, because when you clone this repository these folders will already by their.  
 
 Go in the config.json file created and put your database information
 
