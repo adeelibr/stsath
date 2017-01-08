@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
-import ChoiceForm from 'dashboard/components/ChoiceForm';
+import Report from 'dashboard/components/compare/Report';
+import ChoiceForm from 'dashboard/components/compare/ChoiceForm';
 import ChoiceQueryAPI from 'ChoiceQueryAPI';
+import { RemoveToken } from 'Auth';
 
 class DashboardComparePage extends Component {
 
@@ -13,6 +15,8 @@ class DashboardComparePage extends Component {
         word1: '',
         word2: '',
       },
+      info: {},
+      show: false,
     };
   }
 
@@ -50,17 +54,50 @@ class DashboardComparePage extends Component {
     this.setState({ words });
   }
 
+  clearForm = () => {
+    this.setState({
+      words: { word1: '', word2: '' },
+      errors: {},
+      show: false,
+      info: {},
+    })
+  }
+
   render () {
-    let { errors, words } = this.state;
+    let { errors, words, info, show } = this.state;
 
     return (
-      <div className="">
-        <ChoiceForm
-          onSubmit={this.processForm}
-          onChange={this.changeInfo}
-          errors={errors}
-          words={words}
-        />
+      <div>
+        <div className="row">
+          <div className="col-md-12">
+            <ChoiceForm
+              onSubmit={this.processForm}
+              onChange={this.changeInfo}
+              errors={errors}
+              words={words}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-md-6 col-sm-6">
+            <Report
+              show={show}
+              data={info}
+              section={1}
+              clearForm={this.clearForm}
+            />
+          </div>
+          <div className="col-md-6 col-sm-6">
+            <Report
+              show={show}
+              data={info}
+              section={2}
+              clearForm={this.clearForm}
+            />
+          </div>
+        </div>
+
       </div>
     );
   }
