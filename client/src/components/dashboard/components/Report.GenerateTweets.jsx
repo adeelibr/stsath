@@ -38,7 +38,8 @@ const ReportGenerateTweets = ({ tweets }) => {
           </div>
           <div className="col-md-6 col-sm-6">
             <h4>Analyze:</h4>
-            <table className="table table-hover">
+            <div class="table-responsive">
+              <table className="table table-hover">
               <tbody>
                 <tr>
                   <td scope="row">Score</td>
@@ -66,6 +67,7 @@ const ReportGenerateTweets = ({ tweets }) => {
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
           <Divider inset={true} />
         </div>

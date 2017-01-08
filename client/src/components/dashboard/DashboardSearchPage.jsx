@@ -7,7 +7,6 @@ import React, {Component} from 'react';
 import SearchForm from 'dashboard/components/SearchForm';
 import Report from 'dashboard/components/Report';
 import SearchQueryAPI from 'SearchQueryAPI';
-
 import { RemoveToken } from 'Auth';
 
 class DashboardSearchPage extends Component {
