@@ -1,7 +1,7 @@
 import config from './config';
 
-let SignupAPI = (object) => {
-  let url = config.API_URL + '/cotact';
+let ContactAPI = (object) => {
+  let url = config.API_URL + '/contact';
   return fetch(url, {
 		method: 'POST',
 		headers: {
@@ -10,12 +10,12 @@ let SignupAPI = (object) => {
     body: JSON.stringify(object)
 	})
   .then((res) => {
-    return res.json()
+    return res.json();
   })
   .catch((error) => {
-    console.log('API SignupAPI.js: ', error);
+    console.log('API ContactAPI.js: ', error);
   });
 
 }
 
-export default SignupAPI;
+export default ContactAPI;
