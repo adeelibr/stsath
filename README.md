@@ -6,6 +6,7 @@ By Adeel Imran
 ### Running App
 * Do An Npm Install
 * Start Server: npm start
+* Start Your MySQL Server: (I Use XAMPP For Local Development, You Can Use Any Other MySQL Client You Prefer)
 * Compile Fresh Client Code: npm run bundle
 
 ##### Now Go To Your Browser And Type:
