@@ -36,33 +36,82 @@ exports.choice = function (req, res, next)  {
     var choiceOne = req.query.choice_one;
     var choiceTwo = req.query.choice_two;
 
-    // var today = new Date();
-    // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    let c1tweets = [];
+    let c1score = 0;
+    let c1wordsCount = 0;
+    let c1positiveWordsCount = 0;
+    let c1negativeWordsCount = 0;
+    let c1totalWords = [];
+    let c1positiveWords = [];
+    let c1negativeWords = [];
 
-    let choiceOneScore = 0;
-    let choiceTwoScore = 0;
-    let choiceOneTweets = [];
-    let choiceTwoTweets = [];
+    let c2tweets = [];
+    let c2score = 0;
+    let c2wordsCount = 0;
+    let c2positiveWordsCount = 0;
+    let c2negativeWordsCount = 0;
+    let c2totalWords = [];
+    let c2positiveWords = [];
+    let c2negativeWords = [];
 
     getTweets(choiceOne)
     .then((res) => {
+      // let data = performAnalysis(res.data.statuses);
+      // choiceOneTweets = data.response;
+      // choiceOneScore = data.score;
+
       let data = performAnalysis(res.data.statuses);
-      choiceOneTweets = data.response;
-      choiceOneScore = data.score;
+      c1tweets = data.response;
+      c1score = data.score;
+      c1wordsCount = data.wordsCount;
+      c1positiveWordsCount = data.positiveWordsCount;
+      c1negativeWordsCount = data.negativeWordsCount;
+      c1totalWords = data.totalWords;
+      c1positiveWords = data.positiveWords;
+      c1negativeWords = data.negativeWords;
+
+
       return getTweets(choiceTwo)
     })
     .then((res) => {
       let data = performAnalysis(res.data.statuses);
-      choiceTwoTweets = data.response;
-      choiceTwoScore = data.score;
+      // choiceTwoTweets = data.response;
+      // choiceTwoScore = data.score;
+
+      c2tweets = data.response;
+      c2score = data.score;
+      c2wordsCount = data.wordsCount;
+      c2positiveWordsCount = data.positiveWordsCount;
+      c2negativeWordsCount = data.negativeWordsCount;
+      c2totalWords = data.totalWords;
+      c2positiveWords = data.positiveWords;
+      c2negativeWords = data.negativeWords;
     })
     .then(() => {
       res.status(200).json({
         success: true,
-        choiceOneScore,
-        choiceTwoScore,
-        choiceOneTweets,
-        choiceTwoTweets
+        wordOne: choiceOne,
+        wordTwo: choiceTwo,
+        avgScoreChoiceOne: c1score,
+        avgScoreChoiceTwo: c2score,
+        choiceOneTweets: c1tweets,
+        choiceTwoTweets: c2tweets,
+        infographicChoiceOne: {
+          wordsCount: c1wordsCount,
+          positiveWordsCount: c1positiveWordsCount,
+          negativeWordsCount: c1negativeWordsCount,
+          totalWords: c1totalWords,
+          positiveWords: c1positiveWords,
+          negativeWords: c1negativeWords
+        },
+        infographicChoiceOne: {
+          wordsCount: c2wordsCount,
+          positiveWordsCount: c2positiveWordsCount,
+          negativeWordsCount: c2negativeWordsCount,
+          totalWords: c2totalWords,
+          positiveWords: c2positiveWords,
+          negativeWords: c2negativeWords
+        }
       }).end();
     })
     .catch((err) => {
