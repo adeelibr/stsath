@@ -10,6 +10,23 @@ import WhatshotIcon from 'material-ui/svg-icons/social/whatshot';
 import QAIcon from 'material-ui/svg-icons/action/question-answer';
 import ContactIcon from 'material-ui/svg-icons/communication/contacts';
 
+import IconButton from 'material-ui/IconButton';
+import IconMenu from 'material-ui/IconMenu';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
+const Menu = (props) => (
+  <IconMenu
+    {...props}
+    iconButtonElement={
+      <IconButton><MoreVertIcon color="white" /></IconButton>
+    }
+    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+  >
+    <Link to='/admin/login'><MenuItem primaryText="Admin Login" /></Link>
+    <Link to='/faq'><MenuItem primaryText="Help" /></Link>
+  </IconMenu>
+);
 
 class Navigation extends Component {
 
@@ -27,6 +44,7 @@ class Navigation extends Component {
         <AppBar
           title="Smart Twitter Sentiment Analysis On Tweets & Hashtags"
           onLeftIconButtonTouchTap={this.handleToggle}
+          iconElementRight={<Menu />}
         />
         <Drawer
           docked={false}
