@@ -103,7 +103,7 @@ module.exports = {
 			return res.status(200).json({ success: true, message: 'Succesfully updated password', user: data }).end();
 		})
 		.catch((error) => {
-			console.log(err);
+			// console.log(err);
 			return res.status(500).json({ success: false, message: "Internal Server Error" }).end();
 		});
 

@@ -28,7 +28,21 @@ module.exports = {
 			.catch((error) => {
 				return res.status(500).json({ success: false, message: "Internal Server Error" }).end();
 			})
-	}
+	},
+	getAllFeedbacks: function (req, res, next) {
+		Feedbacks.findAll({
+			include: [models.users]
+		})
+		.then((feedbacks) => {
+			if(!feedbacks) {
+				return res.status(200).json({ success: true, message: "No Feedbacks Found", feedbacks }).end();
+			}
+			return res.status(200).json({ success: true, message: "List of All Feedbacks", feedbacks }).end();
+		})
+		.catch((error) => {
+			return res.status(500).json({ success: false, message: "Internal Server Error", error }).end();
+		});
+	},
 
 }
 
