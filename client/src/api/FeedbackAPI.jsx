@@ -22,6 +22,25 @@ let FeedbackAPI = {
     });
   },
 
+  getAllFeedbacks: function () {
+    let url = config.API_URL + '/feedback/';
+    let token = localStorage.getItem('admintoken');
+
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer" + " " + token
+      }
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => {
+      console.log('API getAllFeedbacks FeedbackAPI.js: ', error);
+    });
+  },
+
 };
 
 export default FeedbackAPI;

@@ -34,9 +34,6 @@ module.exports = {
 			include: [models.users]
 		})
 		.then((feedbacks) => {
-			if(!feedbacks) {
-				return res.status(200).json({ success: true, message: "No Feedbacks Found", feedbacks }).end();
-			}
 			return res.status(200).json({ success: true, message: "List of All Feedbacks", feedbacks }).end();
 		})
 		.catch((error) => {
