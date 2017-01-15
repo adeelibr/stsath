@@ -28,6 +28,8 @@ import Signout from 'dashboard/Signout';
 
 import AdminDashboardLayout from 'admin/layout/AdminDashboardLayout';
 import AdminDashboardMainPage from 'admin/AdminDashboardMainPage';
+import AdminViewFeedbacksPage from 'admin/AdminViewFeedbacksPage';
+import AdminSignout from 'admin/AdminSignout';
 
 // useRouterHistory creates a composable higher-order function
 const appHistory = useRouterHistory(createHashHistory)();
@@ -55,6 +57,8 @@ class App extends React.Component {
         </Route>
         <Route path="/admin" component={AdminDashboardLayout}>
           <IndexRoute component={AdminDashboardMainPage} />
+          <Route path="/admin/view/feedbacks" component={AdminViewFeedbacksPage} />
+          <Route path="/admin/signout" component={Signout} />
         </Route>
       </Router>
     );

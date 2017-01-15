@@ -1,6 +1,6 @@
 import React from 'react';
 
-let AdminDashboardMainPage = (props) => {
+let AdminDashboardMainPage = () => {
   return (
     <div className="">
       <div className="jumbotron">
