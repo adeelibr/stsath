@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import LoginForm from 'public/components/LoginForm';
-import LoginAPI from 'LoginAPI';
+import AdminLoginAPI from 'AdminLoginAPI';
 
 class AdminLoginPage extends Component {
 
@@ -9,7 +9,7 @@ class AdminLoginPage extends Component {
     super(props);
     this.state = {
       errors: {},
-      user: {
+      admin: {
         username: '',
         password: '',
       }
@@ -20,19 +20,18 @@ class AdminLoginPage extends Component {
   }
 
   processForm (e) {
-    let {user} = this.state;
+    let {admin} = this.state;
     e.preventDefault();
-    // console.log('username: ', this.state.user.username);
-    // console.log('password: ', this.state.user.password);
+    // console.log('adminname: ', this.state.admin.adminname);
+    // console.log('password: ', this.state.admin.password);
 
-    LoginAPI(user)
+    AdminLoginAPI(admin)
     .then((res) =>{
       if (!res.success) {
         const errors = res.errors ? res.errors : {};
         errors.summary = res.message;
         this.setState({ errors });
       } else {
-        // console.log('Form is valid');
         this.setState({ errors: {} });
         localStorage.setItem('admintoken', res.token);
         this.props.router.push('/admin');
@@ -42,13 +41,13 @@ class AdminLoginPage extends Component {
 
   changeUser (e) {
     const field = e.target.name;
-    const user = this.state.user;
-    user[field] = e.target.value;
-    this.setState({ user });
+    const admin = this.state.admin;
+    admin[field] = e.target.value;
+    this.setState({ admin });
   }
 
   render () {
-    let {errors, user} = this.state;
+    let {errors, admin} = this.state;
 
     return (
       <div className="row">
@@ -57,7 +56,7 @@ class AdminLoginPage extends Component {
             onSubmit={this.processForm}
             onChange={this.changeUser}
             errors={errors}
-            user={user}
+            user={admin}
           />
         </div>
       </div>
