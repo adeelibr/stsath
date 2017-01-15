@@ -1,8 +1,6 @@
 var jwt    = require('jsonwebtoken');
-
-var models = require('../models');
-var users = models.users;
-
+// var models = require('../models');
+// var users = models.users;
 var isAuth = function(req, res, next) {
 
 	var authHeader = req.headers.authorization;
@@ -25,17 +23,6 @@ var isAuth = function(req, res, next) {
 			}
 		});
 	}
-
-  // User
-  // .findOne({ where : { token : token}})
-	// .then(function(user) {
-	// 	if(!user)
-	// 		return res.status(401).send({msg : "Invalid token."}).end();
-	// 	else{
-	// 		req.user = user;
-	// 		next();
-	// 	}
-	// })
 }
 
 module.exports = isAuth;
