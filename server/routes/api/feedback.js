@@ -7,6 +7,9 @@ var feedbackFunc = require('../../controllers/feedback');
 router.post('/user/:id', feedbackFunc.addFeedback);
 
 // @endpoint api/feedback/ Get All Feedbacks
-router.get('/', feedbackFunc.getAllFeedbacks)
+router.get('/', feedbackFunc.getAllFeedbacks);
+
+// @endpoint api/feedback/:id Soft Delete Feedback
+router.delete('/:id', feedbackFunc.deleteFeedbackById);
 
 module.exports = router;

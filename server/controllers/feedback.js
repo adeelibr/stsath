@@ -5,7 +5,6 @@ var models = require('../models');
 var Feedbacks = models.feedbacks;
 
 module.exports = {
-
 	addFeedback: function(req, res, next) {
 		const validateResult = validateFeedbackFormBody(req.body);
     if (!validateResult.success) {
@@ -31,6 +30,7 @@ module.exports = {
 	},
 	getAllFeedbacks: function (req, res, next) {
 		Feedbacks.findAll({
+			where: req.query,
 			include: [models.users]
 		})
 		.then((feedbacks) => {
@@ -40,7 +40,24 @@ module.exports = {
 			return res.status(500).json({ success: false, message: "Internal Server Error", error }).end();
 		});
 	},
-
+	deleteFeedbackById: function (req, res, next) {
+		let id = req.params.id;
+		Feedbacks.update({ visible: false }, {
+			where: { id: id }
+		})
+		.then((data) => {
+			return Feedbacks.findOne({ where: { id : id } });
+		})
+		.then((feedback) => {
+			if (!feedback) {
+				return res.status(400).json({ success: false, message: 'No Such Feedback Exists' }).end();
+			}
+			return res.status(200).json({ success: true, message: 'Succesfully updated feedback', feedback }).end();
+		})
+		.catch((error) => {
+			return res.status(500).json({ success: false, message: "Internal Server Error", error }).end();
+		})
+	},
 }
 
 function validateFeedbackFormBody(payload) {
