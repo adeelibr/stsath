@@ -38,7 +38,7 @@ export default class AdminTitlebar extends Component {
           <Link to='/admin/view/feedbacks'>
             <MenuItem primaryText="Feedback" leftIcon={<FeedbackIcon />} onTouchTap={this.handleToggle} />
           </Link>
-          <Link to='/login'>
+          <Link to='/admin/view/users'>
             <MenuItem primaryText="Users" leftIcon={<ContactIcon />} onTouchTap={this.handleToggle} />
           </Link>
           <Link to='/admin/signout'>
