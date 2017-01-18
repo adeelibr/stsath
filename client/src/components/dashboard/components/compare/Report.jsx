@@ -46,7 +46,7 @@ const Report = ({ show, data, clearForm, section }) => {
     });
   }
   if (show && (section === 2)) {
-    rows = data.choiceOneTweets.map(function(a, index) {
+    rows = data.choiceTwoTweets.map(function(a, index) {
       let sentimentObj = a.sentiment;
       let s = {
         'id': index,
