@@ -30,6 +30,7 @@ import AdminDashboardLayout from 'admin/layout/AdminDashboardLayout';
 import AdminDashboardMainPage from 'admin/AdminDashboardMainPage';
 import AdminViewFeedbacksPage from 'admin/AdminViewFeedbacksPage';
 import AdminViewUsersPage from 'admin/AdminViewUsersPage';
+import AdminViewUsersLogs from 'admin/AdminViewUsersLogs';
 import AdminSignout from 'admin/AdminSignout';
 
 // useRouterHistory creates a composable higher-order function
@@ -60,6 +61,7 @@ class App extends React.Component {
           <IndexRoute component={AdminDashboardMainPage} />
           <Route path="/admin/view/feedbacks" component={AdminViewFeedbacksPage} />
           <Route path="/admin/view/users" component={AdminViewUsersPage} />
+          <Route path="/admin/view/users/logs" component={AdminViewUsersLogs} />
           <Route path="/admin/signout" component={Signout} />
         </Route>
       </Router>

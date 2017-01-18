@@ -6,6 +6,7 @@ import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
 import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
 import ContactIcon from 'material-ui/svg-icons/communication/contacts';
+import HistoryIcon from 'material-ui/svg-icons/action/history';
 import PowerIcon from 'material-ui/svg-icons/action/power-settings-new';
 
 export default class AdminTitlebar extends Component {
@@ -40,6 +41,9 @@ export default class AdminTitlebar extends Component {
           </Link>
           <Link to='/admin/view/users'>
             <MenuItem primaryText="Users" leftIcon={<ContactIcon />} onTouchTap={this.handleToggle} />
+          </Link>
+          <Link to='/admin/view/users/logs'>
+            <MenuItem primaryText="Users Logs" leftIcon={<HistoryIcon />} onTouchTap={this.handleToggle} />
           </Link>
           <Link to='/admin/signout'>
             <MenuItem primaryText="Signout" leftIcon={<PowerIcon />} onTouchTap={this.handleToggle} />
