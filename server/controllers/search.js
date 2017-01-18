@@ -1,9 +1,10 @@
 var twit = require('twit');
-// var sentimental = require('Sentimental');
 var sentiment = require('../sentiment/sentiment');
 
-var config = require('../../config');
+var models = require('../models');
+var Logs = models.logs;
 
+var config = require('../../config');
 var twitter = new twit({
   consumer_key: config.twitter.consumer_key,
   consumer_secret: config.twitter.consumer_secret,
@@ -87,6 +88,23 @@ exports.choice = function (req, res, next)  {
   let c2totalWords = [];
   let c2positiveWords = [];
   let c2negativeWords = [];
+
+  // Information Passed From isAuth Middleware
+  let user = req.decoded.user;
+  let logsBody = {
+    user_id: user.id,
+    detail: `Analysis performed on words: ${choiceOne}, ${choiceTwo}`
+  }
+
+  Logs.create(logsBody)
+    .then((data) => {
+      if(!data) {
+        res.status(400).json({ success: false, message: 'Logs Were Not Added.' }).end();
+      }
+    })
+    .catch((error) => {
+      return res.status(500).json({ success: false, message: "Internal Server Error", error }).end();
+    })
 
   getTweets(choiceOne)
   .then((res) => {
@@ -174,6 +192,23 @@ exports.search = function (req, res, next) {
   let totalWords = [];
   let positiveWords = [];
   let negativeWords = [];
+
+  // Information Passed From isAuth Middleware
+  let user = req.decoded.user;
+  let logsBody = {
+    user_id: user.id,
+    detail: 'Analysis performed on word: ' + word,
+  }
+
+  Logs.create(logsBody)
+    .then((data) => {
+      if(!data) {
+        res.status(400).json({ success: false, message: 'Logs Were Not Added.' }).end();
+      }
+    })
+    .catch((error) => {
+      return res.status(500).json({ success: false, message: "Internal Server Error", error }).end();
+    })
 
   getTweets(word)
   .then((res) => {
