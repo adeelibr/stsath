@@ -9,6 +9,7 @@ var common = require('../../controllers/common'); // public routes without authe
 var user = require('./user');
 var search = require('./search');
 var feedback = require('./feedback');
+var logs = require('./logs');
 var admin = require('./admin');
 
 router.get('/', function(req, res) {
@@ -23,6 +24,7 @@ router
   .use('/user', isAuth, user)
   .use('/search', isAuth, search)
   .use('/feedback', isAuth, feedback)
+  .use('/logs', isAuth, logs)
   .use('/admin', admin);
 
 module.exports = router;
