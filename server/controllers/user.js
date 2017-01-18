@@ -29,6 +29,16 @@ module.exports = {
 		})
 	}, // end of getUser
 
+	getAllUser: function (req, res, next) {
+		Users.findAll({})
+		.then((users) => {
+			if(users === null) {
+				return res.status(200).json({ success: false, message: "No Users Exist" }).end();
+			}
+			return res.status(200).json({ success: true, users }).end();
+		})
+	},
+
 	updateUserInfo: function (req, res, next) {
 		const validateResult = validateUpdateUserInfoFormBody(req.body)
 		if (!validateResult.success) {
@@ -109,17 +119,30 @@ module.exports = {
 
 	},
 
-	delete: function (req, res, next) {
-		return res.status(200).send({ "user": "u" }).end();
-	},
+	statusUpdate: function (req, res, next) {
+		let id = req.params.id || 0;
+		// let status = req.body.status;
 
-	getAllUser: function (req, res, next) {
-		Users.findAll({})
-		.then((users) => {
-			if(users === null) {
-				return res.status(200).json({ success: false, message: "No Users Exist" }).end();
+		Users.findOne({ where: { id : id } })
+		.then((user) => {
+			if (!user) {
+				return res.status(200).json({ success: false, message: 'No Such User Exists' }).end();
 			}
-			return res.status(200).json({ success: true, users }).end();
+			return user;
+		})
+		.then((user) => {
+			let status = user.status;
+			return Users.update({ status: !status }, { where: { id : id } });
+		})
+		.then((data) => {
+			return Users.findOne({ where: { id : id } });
+		})
+		.then((data) => {
+			return res.status(200).json({ success: true, message: 'Succesfully Changed User Status', user: data }).end();
+		})
+		.catch(function(error) {
+			console.log(error);
+			return res.status(500).json({ success: false, message: "Internal Server Error" }).end();
 		})
 	},
 

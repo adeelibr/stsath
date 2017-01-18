@@ -15,7 +15,7 @@ router.post('/:id/passwordchange', userFunc.updateUserPassword);
 // @endpoint api/user/ Get all user
 router.get('/', userFunc.getAllUser);
 
-// @endpoint api/user/:id Delete a user by id
-router.delete('/:id', userFunc.delete);
+// @endpoint api/user/status/:id Update User Status
+router.put('/status/:id', userFunc.statusUpdate);
 
 module.exports = router;
