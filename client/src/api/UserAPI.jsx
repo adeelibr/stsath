@@ -36,7 +36,26 @@ let UserAPI = {
       return res.json();
     })
     .catch((error) => {
-      console.log('API getUserById UserAPI.js: ', error);
+      console.log('API getAllUsers UserAPI.js: ', error);
+    });
+  },
+
+  toggleUserStatus: function (id) {
+    let url = config.API_URL + '/user/status/' + id;
+    let token = localStorage.getItem('admintoken');
+
+    return fetch(url, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer" + " " + token
+      }
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => {
+      console.log('API toggleUserStatus UserAPI.js: ', error);
     });
   },
 

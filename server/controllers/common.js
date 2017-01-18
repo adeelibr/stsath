@@ -30,7 +30,10 @@ module.exports = {
 			if (!user) {
 				res.status(400).send({ success: false, message: 'Authentication failed. User not found.' });
 			} else if (user) {
-        if (!bcrypt.compareSync(req.body.password, user.hashed_password)) {
+        if (!user.status) {
+          res.status(400).send({ success: false, message: 'Authentication failed. User has been deactived by admin.' });
+        }
+        else if (!bcrypt.compareSync(req.body.password, user.hashed_password)) {
 					res.status(400).json({ success: false, message: 'Authentication failed. Wrong Password.' });
 				} else {
 					var payload = { user };

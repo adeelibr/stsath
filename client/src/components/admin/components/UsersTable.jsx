@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment'
 
-let UsersTable = ({ users }) => {
+import {Toggle} from 'material-ui/';
+
+let UsersTable = ({ users, onChange }) => {
 
   let renderEmptyRow = () => {
     return (
@@ -12,16 +14,25 @@ let UsersTable = ({ users }) => {
   };
 
   let renderUsersList = () => {
+    let active = () => (<span className="label label-success">Active</span>);
+    let deactive = () => (<span className="label label-danger">Deactive</span>);
     return users.map((user, i) => {
       return (
         <tr key={i}>
           <td>{user.id}</td>
           <td>{user.username}</td>
-          <td>{user.first_name}</td>
-          <td>{user.last_name}</td>
+          <td>{user.first_name} {user.last_name}</td>
+          <td>{user.email}</td>
+          <td>{user.status ? active() : deactive()}</td>
           <td>{moment(user.createdAt).format('MM-DD-YYYY')}</td>
           <td>{moment(user.updatedAt).format('MM-DD-YYYY')}</td>
-          <td>Deactive User</td>
+          <td>
+            <Toggle
+              label=""
+              defaultToggled={user.status}
+              onToggle={() => { onChange(user.id); }}
+            />
+          </td>
         </tr>
       );
     });
@@ -29,7 +40,7 @@ let UsersTable = ({ users }) => {
 
   return (
     <section>
-      <h1>Users Information</h1>
+      <h2>Manage Users</h2>
       <div className="table-responsive">
         <table className="table table-hover table-striped">
           <thead>
@@ -38,6 +49,7 @@ let UsersTable = ({ users }) => {
               <th>User Name</th>
               <th>Person Name</th>
               <th>Email</th>
+              <th>Status</th>
               <th>Created At</th>
               <th>Last Updated Information</th>
               <th>Actions</th>
@@ -54,6 +66,7 @@ let UsersTable = ({ users }) => {
 
 UsersTable.propTypes = {
   users: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default UsersTable;

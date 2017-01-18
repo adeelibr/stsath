@@ -24,11 +24,27 @@ export default class AdminViewUsersPage extends Component {
       })
   }
 
+  handleOnChangeUserStatus = (id) => {
+    // console.log('@@@@@@@@ id', id);
+    UserAPI.toggleUserStatus(id)
+      .then((res) => {
+        if (res.success) { return UserAPI.getAllUsers(); }
+        else { throw Error(res); }
+      })
+      .then((data) => {
+        if (data.success) { this.setState({ users: data.users }); }
+        else { throw Error(res); }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
   render () {
     let {users} = this.state;
     return (
       <div className="">
-        <UsersTable users={users} />
+        <UsersTable users={users} onChange={this.handleOnChangeUserStatus} />
       </div>
     );
   }
