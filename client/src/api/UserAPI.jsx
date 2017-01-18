@@ -21,6 +21,25 @@ let UserAPI = {
     });
   },
 
+  getAllUsers: function (id) {
+    let url = config.API_URL + '/user/';
+    let token = localStorage.getItem('admintoken');
+
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer" + " " + token
+      }
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => {
+      console.log('API getUserById UserAPI.js: ', error);
+    });
+  },
+
   updateUserById: function (id, payload) {
     let url = config.API_URL + '/user/' + id;
     let token = localStorage.getItem('token');

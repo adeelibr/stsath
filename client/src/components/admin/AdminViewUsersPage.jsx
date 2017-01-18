@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-let AdminDashboardMainPage = () => {
-  return (
-    <div className="">
-      <div className="jumbotron">
-        <div className="container">
-          <h1>Hi there, Users Page Yo!!!</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.</p>
-          <br/><br/>
-          <p>Cheers,</p>
-          <p><b>STSATH Team</b></p>
-        </div>
+import UserAPI from 'UserAPI';
+import UsersTable from './components/UsersTable';
+
+export default class AdminViewUsersPage extends Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      users: [],
+    };
+  }
+
+  componentDidMount () {
+    UserAPI.getAllUsers()
+      .then((data) => {
+        if (data.success) {
+          this.setState({ users: data.users });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  render () {
+    let {users} = this.state;
+    return (
+      <div className="">
+        <UsersTable users={users} />
       </div>
-    </div>
-  );
+    );
+  }
 };
-
-export default AdminDashboardMainPage;

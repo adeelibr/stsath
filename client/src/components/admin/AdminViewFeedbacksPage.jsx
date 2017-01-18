@@ -23,7 +23,7 @@ let styles = {
   }
 }
 
-export default  class AdminViewFeedbackPage extends Component {
+export default class AdminViewFeedbackPage extends Component {
 
   constructor (props) {
     super(props);
