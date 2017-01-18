@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import UserAPI from 'UserAPI';
 import UsersTable from './components/UsersTable';
 
-export default class AdminViewUsersLogs extends Component {
+export default class AdminViewUsersLogsPage extends Component {
 
   constructor (props) {
     super(props);
