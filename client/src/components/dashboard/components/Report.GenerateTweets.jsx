@@ -38,7 +38,7 @@ const ReportGenerateTweets = ({ tweets }) => {
           </div>
           <div className="col-md-6 col-sm-6">
             <h4>Analyze:</h4>
-            <div class="table-responsive">
+            <div className="table-responsive">
               <table className="table table-hover">
               <tbody>
                 <tr>
