@@ -5,6 +5,7 @@ var models = require('../models');
 var Logs = models.logs;
 
 module.exports = {
+
 	getAllLogs: function (req, res, next) {
 
 		let limit = parseInt(req.query.limit) || 100;
@@ -25,5 +26,20 @@ module.exports = {
 		.catch((error) => {
 			return res.status(500).json({ success: false, message: "Internal Server Error", error }).end();
 		});
+	},
+
+	deleteLogById: function (req, res, next) {
+		var id = req.params.id;
+		Logs.destroy({ where: { id: id }})
+			.then((data) => {
+				if (!data) {
+					return res.status(400).json({ success: false, message: 'Log Not Deleted' }).end();
+				}
+				return res.status(200).json({ success: true, message: 'Succesfully deleted log' }).end();
+			})
+			.catch((error) => {
+				console.log(error);
+				return res.status(500).json({ success: false, message: "Internal Server Error", error }).end();
+			});
 	},
 };
