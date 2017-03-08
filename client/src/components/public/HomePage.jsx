@@ -15,25 +15,18 @@ let HomePage = (props) => {
       onStart={() => props.router.push('/signup')}
     >
       <Slide
-        media={<img src="http://www.icons101.com/icon_png/size_256/id_79394/youtube.png" />}
+        media={<img src="https://3.bp.blogspot.com/-Q-FGVuy8u_E/WL_v4ia23SI/AAAAAAAABGY/ar0GCle1iTI3Oo1xTVjorR6SK7fmPiYSgCLcB/s1600/333.png" className="homepage-image"/>}
         mediaBackgroundStyle={{ backgroundColor: blue400 }}
         contentStyle={{ backgroundColor: blue600 }}
         title="This is a very cool feature"
         subtitle="Just using this will blow your mind."
       />
       <Slide
-        media={<img src="http://www.icons101.com/icon_png/size_256/id_80975/GoogleInbox.png" />}
+        media={<img src="https://4.bp.blogspot.com/-IGavdJ5Zss4/WL_vvMhwRoI/AAAAAAAABGM/m8Q8a4Z5Lvs5qEG5rpoCC7NYHhmP2VeHwCLcB/s1600/111.png" className="homepage-image"/>}
         mediaBackgroundStyle={{ backgroundColor: blue400 }}
         contentStyle={{ backgroundColor: blue600 }}
         title="Ever wanted to be popular?"
         subtitle="Well just mix two colors and your are good to go!"
-      />
-      <Slide
-        media={<img src="http://www.icons101.com/icon_png/size_256/id_76704/Google_Settings.png" />}
-        mediaBackgroundStyle={{ backgroundColor: blue400 }}
-        contentStyle={{ backgroundColor: blue600 }}
-        title="May the force be with you"
-        subtitle="The Force is a metaphysical and ubiquitous power in the Star Wars universe."
       />
     </AutoRotatingCarousel>
   );

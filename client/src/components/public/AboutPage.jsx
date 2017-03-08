@@ -142,7 +142,7 @@ class AboutPage extends React.Component {
           <div className="author about-founder-info">
             <div className="">
               <img
-                src="https://pbs.twimg.com/profile_images/799840359031459840/MOM03REc.jpg"
+                src="https://3.bp.blogspot.com/-WW-3QHLw2ZQ/WL_tdNPfjzI/AAAAAAAABFw/zHFjJeWTyeQV0jwjhJIMwcGvgq1Q-CcgwCLcB/s1600/15181309_1137270699674630_7944531667179951999_n.jpg"
                 className="img-responsive author-img"
               />
             <span className="author-title"><b>Zaryab Feroz</b></span>
