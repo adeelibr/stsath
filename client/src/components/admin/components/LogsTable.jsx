@@ -34,7 +34,7 @@ let LogsTable = ({ logs, deleteDialog, deleteDialogClose, deleteDialogOpen, dele
           <td>{log.detail.charAt(26) !== 's' ? single() : double()}</td>
           <td>{log.user.username}</td>
           <td>{log.user.first_name} {log.user.last_name}</td>
-          <td>{moment(logs.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
+          <td>{moment(log.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
           <td>
             <IconButton touch={true} style={styles.icon} onClick={() => deleteDialogOpen(log.id)} >
               <DeleteIcon />
