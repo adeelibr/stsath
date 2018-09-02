@@ -3,3 +3,5 @@ node_modules
 
 # App
 config/index.js
+client/dist/js/app.js
+client/dist/js/app.js.map
